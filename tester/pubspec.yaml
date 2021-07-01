@@ -1,0 +1,8 @@
+name: string_tools
+version: 1.0.0
+description: >-
+  Find yourself using a shamable amount of substring() and split() functions? Try this instead!
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+dependencies:
+
