@@ -2,6 +2,8 @@
 // https://github.com/thomasberge/string_tools
 // © 2021 Thomas Sebastian Berge
 
+library string_tools;
+
 class StringTools {
 
   int position = 0;
