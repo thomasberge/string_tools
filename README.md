@@ -1,4 +1,4 @@
-# StringTools
+![](https://i.imgur.com/WVRc6JD.png)
 
 A class with a set of functions for handling string operations. Does it get more exciting than that!?
 
