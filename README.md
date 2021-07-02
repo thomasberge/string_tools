@@ -22,7 +22,7 @@ import 'package:string_tools/string_tools.dart';
 ```
 
 
-## The Concept
+## The Concept + examples
 StringTools works as a text editor by having a cursor present on a single line of text. The cursor can be moved around, do selections, inserts, deletes, replace and more. You can also do sub-divisions based on cursor position - or on absolute position within the string.
 
 You instantiate the tool as such:
@@ -38,7 +38,25 @@ stringtool.moveTo("pretty");
 stringtool.replaceCharacters("pretty".length, "quite");
 ```
 
-There are a number of usefull functions that will allow you to edit the string as if you were scripting a text editor.
+With the selection function you can highlight a certain part of a string and do manipulation. Let's remove the scandalous parenthesis and its content:
+
+```dart
+StringTools stringtool = new StringTools("StringTools is quite useful(not really)!");
+
+List<String> elems = [")", "("];
+stringtool.moveToListElement(elems);
+stringtool.startSelection();
+stringtool.move();
+stringtool.moveToListElement(elems);
+stringtool.stopSelection();
+stringtool.deleteSelection();
+```
+
+The order of the elements in the string doesn't matter. StringTools will find the first one and stop there. We start the selection at that position. In order to not find the same element again we `move()`, which basically increases position by 1. Then we find the next element, stop the selection and delete it. Handy!
+
+"But what about nested parenthesis" you might think; well you can evaluate the element found by moveToListElement by catching its return value, as it returns the element it finds. The nesting logic you'll have to write yourself though.
+
+There are a number of other usefull functions that will allow you to edit the string as if you were scripting a text editor.
 
 
 ## Functions
