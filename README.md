@@ -22,7 +22,7 @@ import 'package:string_tools/string_tools.dart';
 ```
 
 
-## The Concept + examples
+## The Concept (+examples)
 StringTools works as a text editor by having a cursor present on a single line of text. The cursor can be moved around, do selections, inserts, deletes, replace and more. You can also do sub-divisions based on cursor position - or on absolute position within the string.
 
 You instantiate the tool as such:
