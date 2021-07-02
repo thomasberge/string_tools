@@ -5,4 +5,5 @@ description: >-
 environment:
   sdk: '>=2.12.0 <3.0.0'
 dependencies:
+repository: https://github.com/thomasberge/string_tools
 
