@@ -43,7 +43,7 @@ There are a number of usefull functions that will allow you to edit the string a
 
 # Functions
 
-#### countUntil
+### countUntil
 Counts forward from current cursor `position` until it finds the given `value`. 
 
 Returns the absolute `position` of the first character of the `value`. If `relativePosition`
