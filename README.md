@@ -31,7 +31,7 @@ You instantiate the tool as such:
 StringTools stringtool = new StringTools("This is pretty handy and pretty awesome!");
 ```
 
-In this case the stringtool.data has been set with the string "This is pretty handy and pretty awesome!". We can easily replace the first "pretty" in the string with "quite" as such:
+In this case the stringtool.data has been set with the string "This is pretty handy and pretty awesome!". We can easily replace only the first "pretty" in the string with "quite" as such:
 
 ```dart
 stringtool.moveTo("pretty");
