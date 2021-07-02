@@ -38,7 +38,7 @@ stringtool.moveTo("pretty");
 stringtool.replaceCharacters("pretty".length, "quite");
 ```
 
-With the selection function you can highlight a certain part of a string and do manipulation. Let's remove the scandalous parenthesis and its content:
+With the selection function you can highlight a certain part of a string and do manipulation. Let's remove the parenthesis and its scandalous content:
 
 ```dart
 StringTools stringtool = new StringTools("StringTools is quite useful(not really)!");
