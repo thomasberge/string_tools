@@ -5,9 +5,9 @@ main() {
   print("Testing StringTools functions:");
 
   if(test_move()) {
-    print("move()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("move()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("move()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    print("move()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if(test_moveTo()) {
@@ -29,9 +29,9 @@ main() {
   }
 
   if(test_countUntil()) {
-    print("countUntil()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("countUntil()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("countUntil()\t\t\t[\u001b[32mOK\u001b[0m]");
+    print("countUntil()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if(test_countCharacterSequenze()) {
@@ -59,21 +59,21 @@ main() {
   }
 
   if(test_getAllFromPosition()) {
-    print("getAllFromPosition()\t\t[\u001b[31mFailed\u001b[0m]");
+    print("getAllFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllFromPosition()\t\t[\u001b[32mOK\u001b[0m]");
+    print("getAllFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if(test_getAllAfterPosition()) {
-    print("getAllAfterPosition()\t\t[\u001b[31mFailed\u001b[0m]");
+    print("getAllAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllAfterPosition()\t\t[\u001b[32mOK\u001b[0m]");
+    print("getAllAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if(test_getAllBeforePosition()) {
-    print("getAllBeforePosition()\t\t[\u001b[31mFailed\u001b[0m]");
+    print("getAllBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllBeforePosition()\t\t[\u001b[32mOK\u001b[0m]");
+    print("getAllBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }    
 
   if(test_getFromPosition()) {
@@ -94,10 +94,10 @@ main() {
     print("getBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
-  if(test_moveToFirstInList()) {
-    print("moveToFirstInList()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  if(test_moveToListElement()) {
+    print("moveToListElement()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("moveToFirstInList()\t\t\t[\u001b[32mOK\u001b[0m]");
+    print("moveToListElement()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if(test_deleteCharacters()) {
@@ -107,15 +107,15 @@ main() {
   }
 
   if(test_findPosition()) {
-    print("findPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("findPosition()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("findPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    print("findPosition()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }  
 
   if(test_getSelection()) {
-    print("getSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("getSelection()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getSelection()\t\t\t[\u001b[32mOK\u001b[0m]");
+    print("getSelection()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   } 
 
   if(test_deleteSelection()) {
@@ -126,10 +126,6 @@ main() {
   print("Done!");
 }
 
-/*  
-  Moves the cursor position a certain number of characters. If it overshoots then the 
-  cursor position will be set to the last character in the string.
-*/
 bool test_move() {
   bool bugs = true;
   StringTools stringtools = new StringTools("Woof");
@@ -149,10 +145,6 @@ bool test_move() {
   return bugs;
 }
 
-/*  
-  Moves the cursor forward until either end of line or the value is found in the string.
-  Returns true if found and false if not.
-*/
 bool test_moveTo() {
   bool bugs = true;
   StringTools stringtools = new StringTools("High as a kite!");
@@ -163,11 +155,6 @@ bool test_moveTo() {
   return bugs;
 }
 
-/*  
-  Moves the cursor backwards until either start of line or the value is found in the string.
-  Returns true if found and false if not. The cursor position is set to the start of the
-  found string.
-*/
 bool test_moveBackwardsTo() {
   bool bugs = true;
   StringTools stringtools = new StringTools("High as a kite!");
@@ -179,9 +166,6 @@ bool test_moveBackwardsTo() {
   return bugs;
 }
 
-/*  
-  Moves the cursor position to the last character of the string. An empty string returns 0.
-*/
 bool test_moveToEnd() {
   bool bugs = true;
   StringTools stringtools = new StringTools("");
@@ -197,11 +181,6 @@ bool test_moveToEnd() {
 }
 
 /*  
-  Counts forward from current cursor position until it finds the given value. Returns the 
-  absolute position of the first character of the value string. If the optional argument
-  relativePosition is true then it returns the character count relative to the current
-  cursor position. If the value is not found it returns -1.
-
   Example     "I am a string"
   
   With a position of 0, countUntil('a') returns 2.
@@ -229,10 +208,6 @@ bool test_countUntil() {
 }
 
 /*  
-  Counts how many characters of provided string there are next to each other from
-  cursor position. Only supports 1 character. If several is provided only the first
-  will be used.
-
   Example:    "aaaarg!"
 
   With a position of 0, countCharacterSequence('a') returns 4.
@@ -257,10 +232,6 @@ bool test_countCharacterSequenze() {
 }
 
 /*  
-  Inserts the supplied string at the current cursor position. It expands the data as
-  it does not replace any characters. If overflow is set to true then the data string
-  will retain the same length, cutting characters that overflow.
-
   Example:    "Well done is better than well said."
 
   With a position of 5, insertAtPosition('friggin ') results in data being
@@ -286,9 +257,6 @@ bool test_insertAtPosition() {
 }
 
 /*  
-  Replace characters starting from the current position with the supplied string. Can
-  optionally be set to cut overflow, maintaining the original width of the data.
-
   Example:    "Well done is better than well said."
 
   With a position of 4, replaceAtPosition('shouted') results in data being
@@ -321,10 +289,6 @@ bool test_replaceAtPosition() {
 }
 
 /*  
-  Replaces the given amount of characters from the current cursor position with the 
-  new replacement string. If overflow is set to true then the data string will 
-  retain the same length, cutting characters that overflow.
-
   Example:    "Well done is better than well said."
 
   With a position of 5, test_replaceCharacters(4, 'shouted') results in data being
@@ -357,8 +321,6 @@ bool test_replaceCharacters() {
 }
 
 /*
-  Returns the string starting from current cursor position and until the end of line.
-
   Example:    "ABCDE"
 
   With a position of 2, getAllFromPosition() returns "CDE"
@@ -374,9 +336,6 @@ test_getAllFromPosition() {
 }
 
 /*  
-  Returns the string after current cursor position, excluding the character at
-  the current cursor position.
-
   Example:    "ABCDE"
 
   With a position of 2, getAllAfterPosition() returns "DE"
@@ -392,8 +351,6 @@ test_getAllAfterPosition() {
 }
 
 /*  
-  Returns the string before current cursor position.
-
   Example:    "ABCDE"
 
   With a position of 2, getAllBeforePosition() returns "AB"
@@ -409,9 +366,6 @@ test_getAllBeforePosition() {
 }
 
 /*  
-  Returns the number of specified characters from the current cursor
-  position. Default is 1 character.
-
   Example:    "ABCDE"
 
   With a position of 2, test_getFromPosition() returns "C"
@@ -429,9 +383,6 @@ test_getFromPosition() {
 }
 
 /*  
-  Returns the number of specified characters from one character after
-  the current cursor position. Default is 1 character.
-
   Example:    "ABCDE"
 
   With a position of 2, test_getFromPosition() returns "D"
@@ -449,9 +400,6 @@ test_getAfterPosition() {
 }
 
 /*  
-  Returns the number of specified characters before the current cursor
-  position. Default is 1 character.
-
   Example:    "ABCDE"
 
   With a position of 2, test_getFromPosition() returns "B"
@@ -469,23 +417,19 @@ test_getBeforePosition() {
 }
 
 /*
-  Moves cursor to the first single character that is present in the List<String> argument, then
-  returns that character. If cursor position is already on an element in the list then move the
-  cursor with the move() function before looking for the next element.
-
   Example:  "It is warm (inside)."
 
   With a position of 0, moveToFirstInList([")", "("]) returns "(". The position is then 11.
   With a position of 11, moveToFirstInList(["(", ")"]) returns ")". The position is then 18.
 */
-test_moveToFirstInList() {
+test_moveToListElement() {
   bool bugs = true;
   StringTools stringtools = new StringTools("It is warm (inside).");
   List<String> list = ["(", ")"];
-  stringtools.moveToFirstInList(list);
+  stringtools.moveToListElement(list);
   if(stringtools.position == 11) {
     stringtools.move();
-    stringtools.moveToFirstInList(list);
+    stringtools.moveToListElement(list);
     if(stringtools.position == 18) {
       bugs = false;
     }
@@ -494,8 +438,6 @@ test_moveToFirstInList() {
 }
 
 /*
-  Deletes the number of characters supplied in the argument, starting with the current position.
-  
   Example:    "ABCDE"
 
   With a position of 1, deleteCharacters(2) will change stringtools.data to "ADE".
@@ -512,9 +454,6 @@ test_deleteCharacters() {
 }
 
 /*
-  Finds the position of the next occurance of the supplied string. It starts looking from the current
-  cursor position, but returns the absolute position in the string. Returns -1 if not present.
-
   Example:    "I am a string."
 
   With a position of 3, findPosition("a") returns 5.
@@ -532,10 +471,6 @@ test_findPosition() {
   return bugs;
 }
 
-/*
-  Returns the current selected string. A string is selected by calling startSelection() and
-  stopSelection() on cursor position.
-*/
 test_getSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");
@@ -549,10 +484,6 @@ test_getSelection() {
   return bugs;
 }
 
-/*
-  Returns the current selected string. A string is selected by calling startSelection() and
-  stopSelection() on cursor position.
-*/
 test_deleteSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");

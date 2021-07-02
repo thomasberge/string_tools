@@ -13,18 +13,12 @@ class StringTools {
 
   StringTools(this.data);
 
-/*  
-  Counts forward from current cursor position until it finds the given value. Returns the 
-  absolute position of the first character of the value string. If the optional argument
-  relativePosition is true then it returns the character count relative to the current
-  cursor position. If the value is not found it returns -1.
 
-  Example     "I am a string"
-  
-  With a position of 0, countUntil('a') returns 2.
-  With a position of 3, countUntil('a') returns 5.
-  With a position of 3, countUntil('a', relativePosition: true) returns 5.
-*/
+  /// Counts forward from current cursor [position] until it finds the given [value]. 
+  ///
+  /// Returns the absolute [position] of the first character of the [value]. If [relativePosition] 
+  /// is true then it returns the character count relative to the current cursor [position]. 
+  /// If the value is not found it returns -1.
   int countUntil(String value, {bool relativePosition = false}) {
     int old_position = position;
     bool value_not_found = true;
@@ -50,17 +44,11 @@ class StringTools {
     }
   }
 
-  /*  
-    Counts how many characters of provided string there are next to each other from
-    cursor position. Only supports 1 character. If several is provided only the first
-    will be used.
-
-    Example:    "aaaarg!"
-
-    With a position of 0, countCharacterSequence('a') returns 4.
-    With a position of 4, countCharacterSequence('a') returns 0.
-    With a position of 4, countCharacterSequence('r') returns 1.
-  */
+    
+  /// Counts neighbouring [character] to the right of cursor [position].
+  /// 
+  /// Only supports single [character] argument. If several string is provided only the first
+  /// character will be used.
   int countCharacterSequenze(String character) {
     character = character.substring(0,1);
     int old_position = position;
@@ -83,10 +71,10 @@ class StringTools {
     }    
   }
 
-  /*  
-    Moves the cursor position a certain number of characters. If it overshoots then the 
-    cursor position will be set to the last character in the string.
-  */
+    
+  /// Moves the cursor [position] a certain number of [characters]. 
+  /// 
+  /// If it overshoots then the cursor [position] will be moved to the end of the string.
   void move({int characters = 1}) {
     position = position + characters;
     _checkEndOfLine();
@@ -94,28 +82,19 @@ class StringTools {
       moveToEnd();
   }
 
-  /*  
-    Moves the cursor position to the last character of the string. An empty string returns 0.
-  */
+    
+  /// Moves the cursor position to the last character of the string.
   void moveToEnd() {
     if(data.length != 0) {
       position = data.length - 1;
     }
   }
 
-  /*  
-    Inserts the supplied string at the current cursor position. It expands the data as
-    it does not replace any characters. If overflow is set to true then the data string
-    will retain the same length, cutting characters that overflow.
-
-    Example:    "Well done is better than well said."
-
-    With a position of 5, insertAtPosition('friggin ') results in data being
-    "Well friggin done is better than well said."
-
-    With a position of 5, insertAtPosition('friggin ', cutOverflow: false) results in data being
-    "Well friggin done is better than wel"
-  */
+    
+  /// Inserts [value] at the current cursor [position]. 
+  /// 
+  /// It expands the data as it does not replace any characters. If [cutOverflow] is true
+  /// then the data string will retain the same length, cutting characters that overflow.
   void insertAtPosition(String value, {bool cutOverflow = false}) {
     String first = data.substring(0, position);
     String last = data.substring(position);
@@ -127,21 +106,10 @@ class StringTools {
       data = data.substring(0, original_length);
   }
 
-  /*  
-    Replace characters starting from the current position with the supplied string. Can
-    optionally be set to cut overflow, maintaining the original width of the data.
-
-    Example:    "Well done is better than well said."
-
-    With a position of 4, replaceAtPosition('shouted') results in data being
-    "Well shouted better than well said."
-
-    With a position of 30, replaceAtPosition('shouted') resulsts in data being
-    "Well done is better than well shouted"
-
-    With a position of 30, replaceAtPosition('shouted', overflow: false) resulsts in data being
-    "Well done is better than well shout"
-  */
+    
+  /// Replace characters starting from current [position] with the supplied [value]. 
+  /// 
+  /// Can optionally be set to [cutOverflow], maintaining the original width of the data.
   void replaceAtPosition(String value, {bool cutOverflow = false}) {
     String first = data.substring(0, position);
     String last = "";
@@ -156,37 +124,25 @@ class StringTools {
       data = data.substring(0, original_length);
   }
 
-/*  
-  Replaces the given amount of characters from the current cursor position with the 
-  new replacement string. If overflow is set to true then the data string will 
-  retain the same length, cutting characters that overflow.
-
-  Example:    "Well done is better than well said."
-
-  With a position of 5, test_replaceCharacters(4, 'shouted') results in data being
-  "Well shouted is better than well said."
-
-  With a position of 30, test_replaceCharacters(4, 'shouted') resulsts in data being
-  "Well done is better than well shouted."
-
-  With a position of 30, test_replaceCharacters(4, 'shouted', cutOverflow: false) resulsts in data being
-  "Well done is better than well shout"    
-*/
-  void replaceCharacters(int characters, String replacement, {bool cutOverflow = false}) {
+  
+  /// Replaces a specific [character] from cursor [position] with [value]. 
+  /// 
+  /// Can optionally be set to [cutOverflow], maintaining the original width of the data.
+  void replaceCharacters(int characters, String value, {bool cutOverflow = false}) {
     String first = data.substring(0, position);
     String last = data.substring(position + characters);
     int original_length = data.length;
 
-    data = first + replacement + last;
+    data = first + value + last;
 
     if(cutOverflow == true)
       data = data.substring(0, original_length);
   }
 
-  /*  
-    Moves the cursor forward until either end of line or the value is found in the string.
-    Returns true if found and false if not.
-  */
+    
+  ///  Moves the cursor [position] forward until either end of line or [value] is found.
+  /// 
+  ///  Returns `true` if found and `false` if not.
   bool moveTo(String value) {
     bool not_found = true;
     while(not_found) {
@@ -204,7 +160,7 @@ class StringTools {
     }    
   }
 
-  /* NOT YET DONE!!!! DOES NOT WORK! */
+  // MOCKUP - NOT YET DONE!!!! DOES NOT WORK! IF USED WORLDS WILL COLLIDE!
   bool moveBackwardsFromEndUntil(String value) {
     bool not_found = true;
     int previous_position = position;
@@ -225,11 +181,11 @@ class StringTools {
     }
   }
 
-  /*  
-    Moves the cursor backwards until either start of line or the value is found in the string.
-    Returns true if found and false if not. The cursor position is set to the start of the
-    found string.
-  */
+
+  /// Moves the cursor [position] backwards until start of line or [value] is found.
+  /// 
+  /// Returns `true` if found and `false` if not. The cursor [position] is set to the 
+  /// start of the found [value].
   bool moveBackwardsTo(String value) {
     bool not_found = true;
     while(not_found) {
@@ -247,48 +203,26 @@ class StringTools {
     }    
   }  
 
-  /*  
-    Returns the string before current cursor position.
-
-    Example:    "ABCDE"
-
-    With a position of 2, getAllBeforePosition() returns "AB"
-  */
+  /// Returns the all characters left of cursor [position].
   String getAllBeforePosition() {
     return data.substring(0, position);
   }
 
-  /*  
-    Returns the string after current cursor position, excluding the character at
-    the current cursor position.
 
-    Example:    "ABCDE"
-
-    With a position of 2, getAllAfterPosition() returns "DE"
-  */
+  /// Returns all the characters right of cursor [position], excluding current cursor position.
   String getAllAfterPosition() {
     return data.substring(position + 1);
   }
 
-  /*  
-    Returns the string starting from current cursor position and until the end of line.
 
-    Example:    "ABCDE"
-
-    With a position of 2, getAllFromPosition() returns "CDE"
-  */
+  /// Returns all character starting from cursor [position] and until the end of line.
   String getAllFromPosition() {
     return data.substring(position);
   }
 
-  /*  
-    Returns the number of specified characters before the current cursor
-    position. Default is 1 character.
-
-    Example:    "ABCDE"
-
-    With a position of 2, test_getFromPosition() returns "B"
-  */
+  /// Returns the character left of cursor [position].
+  /// 
+  /// Can optionally define number of [characters] to return.
   String getBeforePosition({int characters = 1}) {
     if((position - characters) < 0) {
       return "";
@@ -297,14 +231,9 @@ class StringTools {
     }
   }
 
-  /*  
-    Returns the number of specified characters from one character after
-    the current cursor position. Default is 1 character.
-
-    Example:    "ABCDE"
-
-    With a position of 2, test_getFromPosition() returns "D"
-  */
+  /// Returns the character to the right of cursor [position].
+  /// 
+  /// Can optionally define number of [characters] to return.
   String getAfterPosition({int characters = 1}) {
     _checkEndOfLine();
     if(eol) {
@@ -320,14 +249,10 @@ class StringTools {
     }
   }
 
-  /*  
-    Returns the number of specified characters from the current cursor
-    position. Default is 1 character.
 
-    Example:    "ABCDE"
-
-    With a position of 2, test_getFromPosition() returns "C"
-  */
+  /// Returns the character from cursor [position].
+  /// 
+  /// Can optionally define number of [characters] to return.
   String getFromPosition({int characters = 1}) {
     _checkEndOfLine();
     if(eol) {
@@ -343,17 +268,10 @@ class StringTools {
     }
   }  
 
-  /*
-    Moves cursor to the first single character that is present in the List<String> argument, then
-    returns that character. If cursor position is already on an element in the list then move the
-    cursor with the move() function before looking for the next element.
-
-    Example:  "It is warm (inside)."
-
-    With a position of 0, moveToFirstInList([")", "("]) returns "(". The position is then 11.
-    With a position of 11, moveToFirstInList(["(", ")"]) returns ")". The position is then 18.
-  */
-  String moveToFirstInList(List<String> values) {
+  /// Moves cursor [position] until it finds any element in [values] and returns that element.
+  /// 
+  /// Reaching end of line returns a blank character.
+  String moveToListElement(List<String> values) {
     while(true) {
       _checkEndOfLine();
       if(eol) {
@@ -369,28 +287,17 @@ class StringTools {
     }    
   }  
 
-  /*
-    Deletes the number of characters supplied in the argument, starting with the current position.
-    
-    Example:    "ABCDE"
 
-    With a position of 1, deleteCharacters(2) will change stringtools.data to "ADE".
-  */
+  /// Deletes a number of [characters], starting with the cursor [position].
   void deleteCharacters(int characters) {
     String first = data.substring(0, position);
     String last = data.substring(position + characters);
     data = first + last;
   }
 
-  /*
-    Finds the position of the next occurance of the supplied string. It starts looking from the current
-    cursor position, but returns the absolute position in the string. Returns -1 if not present.
-
-    Example:    "I am a string."
-
-    With a position of 3, findPosition("a") returns 5.
-    With a position of 0, findPosition("rockets!"") returns -1.
-  */
+  /// Finds absolute position of the next occurance of [value] starting from cursor [position]. 
+  /// 
+  /// Returns `-1` if not present.
   int findPosition(String value) {
     String read_data = data.substring(position, (data.length - position));
     int index = read_data.indexOf(value);
@@ -401,16 +308,9 @@ class StringTools {
     }
   }
 
-  /*
-    Set the start of selection from the cursors current position unless a specific positional value 
-    is supplied. Setting a start_selection value does not check if the selection is negative, meaning
-    that the stop_selection value is lower than the start_selection value.
-
-    Example:
-
-    With a position of 0, startSelection() sets the start_selection value to 0.
-    With a position of 2, startSelection(1) sets the start_selection value to 1.
-  */
+  /// Sets the start of a selection from cursors [position].
+  /// 
+  /// An optional [value] may set the selection start directly without relying on cursor [position].
   void startSelection({int? value = null}) {
     if (value != null) {
       if(value <= (data.length - position)) {
@@ -423,16 +323,9 @@ class StringTools {
     }
   }
 
-  /*
-    Set the end of the selection from the cursors current position unless a specific positional value 
-    is supplied. Setting a stop_selection value does not check if the selection is negative, meaning
-    that the stop_selection value is lower than the start_selection value.
-
-    Example:
-
-    With a position of 3, stopSelection() sets the stop_selection value to 3.
-    With a position of 0, stopSelection(1) sets the stop_selection value to 1.
-  */
+  /// Sets the end of a selection from cursors [position].
+  /// 
+  /// An optional [value] may set the selection end directly without relying on cursor [position].
   void stopSelection({int? value = null, bool end_of_string = false}) {
     if (value != null) {
       stop_selection = value;
@@ -443,10 +336,8 @@ class StringTools {
     }
   }
 
-/*
-  Returns the current selected string. A string is selected by calling startSelection() and
-  stopSelection() on cursor position.
-*/
+
+  /// Returns the selected `string`. 
   String getSelection() {
     if ((stop_selection - start_selection) > 0) {
       String test = data.substring(start_selection, stop_selection);
@@ -456,9 +347,7 @@ class StringTools {
     }
   }
 
-  /*
-    Deletes the current selected string.
-  */
+  /// Deletes the selected `string`.
   void deleteSelection({bool reset_marks = true}) {
     if (stop_selection - start_selection > 0) {
       String first = data.substring(0, start_selection);
@@ -479,10 +368,8 @@ class StringTools {
     }
   }
 
-  /*
-    Checks if current position is past the end of the string. Used internally to set the 
-    eol (EndOfLine) flag.
-  */
+
+  /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if((data.length - 1) <= position) {
       eol = true;
@@ -491,10 +378,8 @@ class StringTools {
     }
   }
 
-  /*
-    Returns true if current position + number of characters in the characters argument will
-    put the position out of bounds.
-  */
+
+  /// Returns true if current [position] + [characters] will put the position out of bounds.
   bool _checkOutOfBounds(int characters) {
     if(position + characters > data.length) {
       return true;
