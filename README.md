@@ -4,7 +4,7 @@ A class with a set of functions for handling string operations. Does it get more
 
 <a href="https://www.buymeacoffee.com/thomasberge" target="_blank"><img src="https://i.imgur.com/aV6DDA7.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" > </a>
 
-# Installing
+## Installing
 
 Add string_tools to your pubspec.yaml file:
 
@@ -22,7 +22,7 @@ import 'package:string_tools/string_tools.dart';
 ```
 
 
-# The Concept
+## The Concept
 StringTools works as a text editor by having a cursor present on a single line of text. The cursor can be moved around, do selections, inserts, deletes, replace and more. You can also do sub-divisions based on cursor position - or on absolute position within the string.
 
 You instantiate the tool as such:
@@ -41,7 +41,7 @@ stringtool.replaceCharacters("pretty".length, "quite");
 There are a number of usefull functions that will allow you to edit the string as if you were scripting a text editor.
 
 
-# Functions
+## Functions
 
 ### countUntil
 Counts forward from current cursor `position` until it finds the given `value`. 
@@ -254,7 +254,7 @@ void deleteSelection({bool reset_marks = true})
 ```
 
 
-# Testing
+## Testing
 
 There is a test script included in /test that runs all functions in different variations and tests against the result. A report is written to console where each function is graded with a `OK` or `Failed`. If changes are made to string_tools then new functions should be added and all functions tested again to make sure they pass.
 
