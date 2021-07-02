@@ -55,7 +55,7 @@ int countUntil(String value, {bool relativePosition = false})
 ```
 
 
-#### countCharacterSequenze    
+### countCharacterSequenze    
 Counts neighbouring `character` to the right of cursor `position`.
 
 Only supports single `character` argument. If several string is provided only the first
@@ -66,7 +66,7 @@ int countCharacterSequenze(String character)
 ```
 
 
-#### move    
+### move    
 Moves the cursor `position` a certain number of `characters`. 
 
 If it overshoots then the cursor `position` will be moved to the end of the string.
@@ -76,7 +76,7 @@ void move({int characters = 1})
 ```
 
 
-#### moveToEnd    
+### moveToEnd    
 Moves the cursor position to the last character of the string.
 
 ```dart
@@ -84,7 +84,7 @@ void moveToEnd()
 ``` 
 
 
-#### insertAtPosition
+### insertAtPosition
 Inserts `value` at the current cursor `position`. 
 
 It expands the data as it does not replace any characters. If `cutOverflow` is true
@@ -95,7 +95,7 @@ void insertAtPosition(String value, {bool cutOverflow = false})
 ```
 
 
-#### replaceAtPosition    
+### replaceAtPosition    
 Replace characters starting from current `position` with the supplied `value`. 
 
 Can optionally be set to `cutOverflow`, maintaining the original width of the data.
@@ -105,7 +105,7 @@ void replaceAtPosition(String value, {bool cutOverflow = false})
 ```
 
 
-#### replaceCharacters
+### replaceCharacters
 Replaces a specific `character` from cursor `position` with `value`. 
 
 Can optionally be set to `cutOverflow`, maintaining the original width of the data.
@@ -115,7 +115,7 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 ```
 
 
-#### moveTo    
+### moveTo    
 Moves the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
@@ -125,7 +125,7 @@ bool moveTo(String value)
 ```
 
 
-#### moveBackwardsTo
+### moveBackwardsTo
 Moves the cursor `position` backwards until start of line or `value` is found.
 
 Returns `true` if found and `false` if not. The cursor `position` is set to the 
@@ -136,7 +136,7 @@ bool moveBackwardsTo(String value)
 ```
 
 
-#### getAllBeforePosition
+### getAllBeforePosition
 Returns the all characters left of cursor `position`.
 
 ```dart
@@ -144,7 +144,7 @@ String getAllBeforePosition()
 ```
 
 
-#### getAllAfterPosition
+### getAllAfterPosition
 Returns all the characters right of cursor `position`, excluding current cursor position.
 
 ```dart
@@ -152,7 +152,7 @@ String getAllAfterPosition()
 ```
 
 
-#### getAllFromPosition
+### getAllFromPosition
 Returns all character starting from cursor `position` and until the end of line.
 
 ```dart
@@ -160,7 +160,7 @@ String getAllFromPosition()
 ```
 
 
-#### getBeforePosition
+### getBeforePosition
 Returns the character left of cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -170,7 +170,7 @@ String getBeforePosition({int characters = 1})
 ```
 
 
-#### getAfterPosition
+### getAfterPosition
 Returns the character to the right of cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -180,7 +180,7 @@ String getAfterPosition({int characters = 1})
 ```
 
 
-#### getFromPosition
+### getFromPosition
 Returns the character from cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -190,7 +190,7 @@ String getFromPosition({int characters = 1})
 ```
 
 
-#### moveToListElement
+### moveToListElement
 Moves cursor `position` until it finds any element in `values` and returns that element.
 
 Reaching end of line returns a blank character.
@@ -200,7 +200,7 @@ String moveToListElement(List<String> values)
 ```
 
 
-#### deleteCharacters
+### deleteCharacters
 Deletes a number of `characters`, starting with the cursor `position`.
 
 ```dart
@@ -208,7 +208,7 @@ void deleteCharacters(int characters)
 ```
 
 
-#### findPosition
+### findPosition
 Finds absolute position of the next occurance of `value` starting from cursor `position`. 
 
 Returns `-1` if not present.
@@ -218,7 +218,7 @@ int findPosition(String value)
 ```
 
 
-#### startSelection
+### startSelection
 Sets the start of a selection from cursors `position`.
 
 An optional `value` may set the selection start directly without relying on cursor `position`.
@@ -228,7 +228,7 @@ void startSelection({int? value = null})
 ```
 
 
-#### stopSelection
+### stopSelection
 Sets the end of a selection from cursors `position`.
 
 An optional `value` may set the selection end directly without relying on cursor `position`.
@@ -238,7 +238,7 @@ void stopSelection({int? value = null, bool end_of_string = false})
 ```
 
 
-#### getSelection
+### getSelection
 Returns the selected `string`. 
 
 ```dart
@@ -246,7 +246,7 @@ String getSelection()
 ```
 
 
-#### deleteSelection
+### deleteSelection
 Deletes the selected `string`.
 
 ```dart
