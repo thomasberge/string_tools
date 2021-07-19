@@ -5,7 +5,6 @@
 library string_tools;
 
 class StringTools {
-
   int position = 0;
   int width = 1;
   String data;
@@ -15,28 +14,28 @@ class StringTools {
 
   StringTools(this.data);
 
-
-  /// Counts forward from current cursor [position] until it finds the given [value]. 
+  /// Counts forward from current cursor [position] until it finds the given [value].
   ///
-  /// Returns the absolute [position] of the first character of the [value]. If [relativePosition] 
-  /// is true then it returns the character count relative to the current cursor [position]. 
+  /// Returns the absolute [position] of the first character of the [value]. If [relativePosition]
+  /// is true then it returns the character count relative to the current cursor [position].
   /// If the value is not found it returns -1.
   int countUntil(String value, {bool relativePosition = false}) {
     int old_position = position;
     bool value_not_found = true;
 
-    while(value_not_found) {
-      if((position + value.length) > data.length) {
+    while (value_not_found) {
+      if ((position + value.length) > data.length) {
         return -1;
       } else {
-        String string_sample = data.substring(position, (position + value.length));
-        if(string_sample == value) {
+        String string_sample =
+            data.substring(position, (position + value.length));
+        if (string_sample == value) {
           int found_position = position;
           position = old_position;
-          if(relativePosition) {
-            return found_position-position;
+          if (relativePosition) {
+            return found_position - position;
           } else {
-            return found_position;            
+            return found_position;
           }
         } else {
           position++;
@@ -46,23 +45,22 @@ class StringTools {
     }
   }
 
-    
   /// Counts neighbouring [character] to the right of cursor [position].
-  /// 
+  ///
   /// Only supports single [character] argument. If several string is provided only the first
   /// character will be used.
   int countCharacterSequenze(String character) {
-    character = character.substring(0,1);
+    character = character.substring(0, 1);
     int old_position = position;
     int count = 0;
 
-    while(true) {
-      if((position + 1) > data.length) {
+    while (true) {
+      if ((position + 1) > data.length) {
         position = old_position;
         return count;
       } else {
         String string_sample = data.substring(position, (position + 1));
-        if(string_sample == character) {
+        if (string_sample == character) {
           count++;
           position++;
         } else {
@@ -70,31 +68,27 @@ class StringTools {
           return count;
         }
       }
-    }    
+    }
   }
 
-    
-  /// Moves the cursor [position] a certain number of [characters]. 
-  /// 
+  /// Moves the cursor [position] a certain number of [characters].
+  ///
   /// If it overshoots then the cursor [position] will be moved to the end of the string.
   void move({int characters = 1}) {
     position = position + characters;
     _checkEndOfLine();
-    if(eol)
-      moveToEnd();
+    if (eol) moveToEnd();
   }
 
-    
-  /// Moves the cursor position to the last character of the string.
+  /// Moves the cursor position past the last character of the string.
   void moveToEnd() {
-    if(data.length != 0) {
-      position = data.length - 1;
+    if (data.length != 0) {
+      position = data.length;
     }
   }
 
-    
-  /// Inserts [value] at the current cursor [position]. 
-  /// 
+  /// Inserts [value] at the current cursor [position].
+  ///
   /// It expands the data as it does not replace any characters. If [cutOverflow] is true
   /// then the data string will retain the same length, cutting characters that overflow.
   void insertAtPosition(String value, {bool cutOverflow = false}) {
@@ -104,62 +98,57 @@ class StringTools {
 
     data = first + value + last;
 
-    if(cutOverflow == true)
-      data = data.substring(0, original_length);
+    if (cutOverflow == true) data = data.substring(0, original_length);
   }
 
-    
-  /// Replace characters starting from current [position] with the supplied [value]. 
-  /// 
+  /// Replace characters starting from current [position] with the supplied [value].
+  ///
   /// Can optionally be set to [cutOverflow], maintaining the original width of the data.
   void replaceAtPosition(String value, {bool cutOverflow = false}) {
     String first = data.substring(0, position);
     String last = "";
     int original_length = data.length;
 
-    if((position + value.length) < data.length)
+    if ((position + value.length) < data.length)
       last = data.substring(position + value.length);
 
     data = first + value + last;
 
-    if(cutOverflow == true)
-      data = data.substring(0, original_length);
+    if (cutOverflow == true) data = data.substring(0, original_length);
   }
 
-  
-  /// Replaces a specific [character] from cursor [position] with [value]. 
-  /// 
+  /// Replaces a specific [character] from cursor [position] with [value].
+  ///
   /// Can optionally be set to [cutOverflow], maintaining the original width of the data.
-  void replaceCharacters(int characters, String value, {bool cutOverflow = false}) {
+  void replaceCharacters(int characters, String value,
+      {bool cutOverflow = false}) {
     String first = data.substring(0, position);
     String last = data.substring(position + characters);
     int original_length = data.length;
 
     data = first + value + last;
 
-    if(cutOverflow == true)
-      data = data.substring(0, original_length);
+    if (cutOverflow == true) data = data.substring(0, original_length);
   }
 
-    
   ///  Moves the cursor [position] forward until either end of line or [value] is found.
-  /// 
+  ///
   ///  Returns `true` if found and `false` if not.
   bool moveTo(String value) {
     bool not_found = true;
-    while(not_found) {
-      if((position + value.length) > data.length) {
+    while (not_found) {
+      if ((position + value.length) > data.length) {
         return false;
       } else {
         String temp = data.substring(position, (position + value.length));
-        if(temp == value) {
+        if (temp == value) {
           return true;
         } else {
           position++;
           _checkEndOfLine();
         }
       }
-    }    
+    }
   }
 
   // MOCKUP - NOT YET DONE!!!! DOES NOT WORK! IF USED WORLDS WILL COLLIDE!
@@ -173,9 +162,9 @@ class StringTools {
     print("Position: " + position.toString());
     print("Width: " + width.toString());
 
-    while(not_found) {
+    while (not_found) {
       position = data.length;
-      if(position < previous_position) {
+      if (position < previous_position) {
         position = previous_position;
         return false;
       }
@@ -183,39 +172,36 @@ class StringTools {
     }
   }
 
-
   /// Moves the cursor [position] backwards until start of line or [value] is found.
-  /// 
-  /// Returns `true` if found and `false` if not. The cursor [position] is set to the 
+  ///
+  /// Returns `true` if found and `false` if not. The cursor [position] is set to the
   /// start of the found [value].
   bool moveBackwardsTo(String value) {
     bool not_found = true;
-    while(not_found) {
-      if(position == 0) {
+    while (not_found) {
+      if (position == 0) {
         return false;
       } else {
-        if(getFromPosition(characters: value.length) == value) {
+        if (getFromPosition(characters: value.length) == value) {
           return true;
         } else {
-          if(position > -1) {
+          if (position > -1) {
             position--;
           }
         }
       }
-    }    
-  }  
+    }
+  }
 
   /// Returns the all characters left of cursor [position].
   String getAllBeforePosition() {
     return data.substring(0, position);
   }
 
-
   /// Returns all the characters right of cursor [position], excluding current cursor position.
   String getAllAfterPosition() {
     return data.substring(position + 1);
   }
-
 
   /// Returns all character starting from cursor [position] and until the end of line.
   String getAllFromPosition() {
@@ -223,26 +209,26 @@ class StringTools {
   }
 
   /// Returns the character left of cursor [position].
-  /// 
+  ///
   /// Can optionally define number of [characters] to return.
   String getBeforePosition({int characters = 1}) {
-    if((position - characters) < 0) {
+    if ((position - characters) < 0) {
       return "";
-    } else {    
+    } else {
       return data.substring(position - characters, position);
     }
   }
 
   /// Returns the character to the right of cursor [position].
-  /// 
+  ///
   /// Can optionally define number of [characters] to return.
   String getAfterPosition({int characters = 1}) {
     _checkEndOfLine();
-    if(eol) {
+    if (eol) {
       return "";
     } else {
       {
-        if(_checkOutOfBounds(characters)) {
+        if (_checkOutOfBounds(characters)) {
           return "";
         } else {
           return data.substring(position + 1, position + 1 + characters);
@@ -251,44 +237,42 @@ class StringTools {
     }
   }
 
-
   /// Returns the character from cursor [position].
-  /// 
+  ///
   /// Can optionally define number of [characters] to return.
   String getFromPosition({int characters = 1}) {
     _checkEndOfLine();
-    if(eol) {
+    if (eol) {
       return "";
     } else {
       {
-        if(_checkOutOfBounds(characters)) {
+        if (_checkOutOfBounds(characters)) {
           return "";
         } else {
           return data.substring(position, position + characters);
         }
       }
     }
-  }  
+  }
 
   /// Moves cursor [position] until it finds any element in [values] and returns that element.
-  /// 
+  ///
   /// Reaching end of line returns a blank character.
   String moveToListElement(List<String> values) {
-    while(true) {
+    while (true) {
       _checkEndOfLine();
-      if(eol) {
+      if (eol) {
         return "";
       } else {
         String nextCharacter = getFromPosition();
-        if(values.contains(nextCharacter)) {
+        if (values.contains(nextCharacter)) {
           return nextCharacter;
         } else {
           move();
         }
       }
-    }    
-  }  
-
+    }
+  }
 
   /// Deletes a number of [characters], starting with the cursor [position].
   void deleteCharacters(int characters) {
@@ -297,13 +281,13 @@ class StringTools {
     data = first + last;
   }
 
-  /// Finds absolute position of the next occurance of [value] starting from cursor [position]. 
-  /// 
+  /// Finds absolute position of the next occurance of [value] starting from cursor [position].
+  ///
   /// Returns `-1` if not present.
   int findPosition(String value) {
     String read_data = data.substring(position, (data.length - position));
     int index = read_data.indexOf(value);
-    if(index != -1) {
+    if (index != -1) {
       return index + position;
     } else {
       return -1;
@@ -311,11 +295,11 @@ class StringTools {
   }
 
   /// Sets the start of a selection from cursors [position].
-  /// 
+  ///
   /// An optional [value] may set the selection start directly without relying on cursor [position].
   void startSelection({int? value = null}) {
     if (value != null) {
-      if(value <= (data.length - position)) {
+      if (value <= (data.length - position)) {
         start_selection = value;
       } else {
         start_selection = data.length;
@@ -326,7 +310,7 @@ class StringTools {
   }
 
   /// Sets the end of a selection from cursors [position].
-  /// 
+  ///
   /// An optional [value] may set the selection end directly without relying on cursor [position].
   void stopSelection({int? value = null, bool end_of_string = false}) {
     if (value != null) {
@@ -338,8 +322,7 @@ class StringTools {
     }
   }
 
-
-  /// Returns the selected `string`. 
+  /// Returns the selected `string`.
   String getSelection() {
     if ((stop_selection - start_selection) > 0) {
       String test = data.substring(start_selection, stop_selection);
@@ -370,20 +353,18 @@ class StringTools {
     }
   }
 
-
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
-    if((data.length - 1) <= position) {
+    if ((data.length) <= position) {
       eol = true;
     } else {
       eol = false;
     }
   }
 
-
   /// Returns true if current [position] + [characters] will put the position out of bounds.
   bool _checkOutOfBounds(int characters) {
-    if(position + characters > data.length) {
+    if (position + characters > data.length) {
       return true;
     } else {
       return false;
