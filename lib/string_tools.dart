@@ -193,6 +193,25 @@ class StringTools {
     }
   }
 
+  /// Deletes all the characters left of cursor [position]. This resets any selection.
+  void deleteAllBeforePosition() {
+    data = getAllFromPosition();
+    position = 0;
+    start_selection = 0;
+    stop_selection = 0;
+  }
+
+  /// Deletes all the characters right of cursor [position], excluding current cursor position.
+  void deleteAllAfterPosition() {
+    String temp = getAllBeforePosition() + getFromPosition();
+    data = temp;
+  }
+
+  /// Returnss all character starting from cursor [position] and until the end of line.
+  void deleteAllFromPosition() {
+    data = getAllBeforePosition();
+  }
+
   /// Returns the all characters left of cursor [position].
   String getAllBeforePosition() {
     return data.substring(0, position);

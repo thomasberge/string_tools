@@ -93,6 +93,24 @@ main() {
     print("getBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
+  if (test_deleteAllFromPosition()) {
+    print("deleteFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("deleteFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_deleteAllAfterPosition()) {
+    print("deleteAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("deleteAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_deleteAllBeforePosition()) {
+    print("deleteBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("deleteBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
   if (test_moveToListElement()) {
     print("moveToListElement()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
@@ -362,6 +380,54 @@ test_getAllBeforePosition() {
   StringTools stringtools = new StringTools("ABCDE");
   stringtools.position = 2;
   if (stringtools.getAllBeforePosition() == "AB") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+/*
+  Example:    "ABCDE"
+
+  With a position of 2, deleteAllFromPosition() deletes "CDE"
+*/
+test_deleteAllFromPosition() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("ABCDE");
+  cursor.position = 2;
+  cursor.deleteAllFromPosition();
+  if (cursor.data == "AB") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+/*  
+  Example:    "ABCDE"
+
+  With a position of 2, deleteAllAfterPosition() deletes "DE"
+*/
+test_deleteAllAfterPosition() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("ABCDE");
+  cursor.position = 2;
+  cursor.getAllAfterPosition()
+  if (cursor.data == "ABC") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+/*  
+  Example:    "ABCDE"
+
+  With a position of 2, deleteAllBeforePosition() deletes "AB"
+*/
+test_deleteAllBeforePosition() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("ABCDE");
+  cursor.position = 2;
+  cursor.getAllBeforePosition()
+  if (cursor.data == "CDE") {
     bugs = false;
   }
   return bugs;

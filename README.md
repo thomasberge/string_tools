@@ -28,28 +28,28 @@ StringTools works as a text editor by having a cursor present on a single line o
 You instantiate the tool as such:
 
 ```dart
-StringTools stringtool = new StringTools("This is pretty handy and pretty awesome!");
+StringTools cursor = new StringTools("This is pretty handy and pretty awesome!");
 ```
 
-In this case the stringtool.data has been set with the string "This is pretty handy and pretty awesome!". We can easily replace only the first "pretty" in the string with "quite" as such:
+In this case the cursor.data has been set with the string "This is pretty handy and pretty awesome!". We can easily replace only the first "pretty" in the string with "quite" as such:
 
 ```dart
-stringtool.moveTo("pretty");
-stringtool.replaceCharacters("pretty".length, "quite");
+cursor.moveTo("pretty");
+cursor.replaceCharacters("pretty".length, "quite");
 ```
 
 With the selection function you can highlight a certain part of a string and do manipulation. Let's remove the parenthesis and its scandalous content:
 
 ```dart
-StringTools stringtool = new StringTools("StringTools is quite useful(not really)!");
+StringTools cursor = new StringTools("StringTools is quite useful(not really)!");
 
 List<String> elems = [")", "("];
-stringtool.moveToListElement(elems);
-stringtool.startSelection();
-stringtool.move();
-stringtool.moveToListElement(elems);
-stringtool.stopSelection();
-stringtool.deleteSelection();
+cursor.moveToListElement(elems);
+cursor.startSelection();
+cursor.move();
+cursor.moveToListElement(elems);
+cursor.stopSelection();
+cursor.deleteSelection();
 ```
 
 The order of the elements in the string doesn't matter. StringTools will find the first one and stop there. We start the selection at that position. In order to not find the same element again we `move()`, which basically increases position by 1. Then we find the next element, stop the selection and delete it. Handy!
@@ -87,7 +87,7 @@ int countCharacterSequenze(String character)
 ### move    
 Moves the cursor `position` a certain number of `characters`. 
 
-If it overshoots then the cursor `position` will be moved to the end of the string.
+If it overshoots then the cursor `position` will be moved past the last character of the string.
 
 ```dart
 void move({int characters = 1})
@@ -95,7 +95,7 @@ void move({int characters = 1})
 
 
 ### moveToEnd    
-Moves the cursor position to the last character of the string.
+Moves the cursor position past the last character of the string.
 
 ```dart
 void moveToEnd()
@@ -155,7 +155,7 @@ bool moveBackwardsTo(String value)
 
 
 ### getAllBeforePosition
-Returns the all characters left of cursor `position`.
+Returns all the characters left of cursor `position`.
 
 ```dart
 String getAllBeforePosition()
@@ -207,6 +207,28 @@ Can optionally define number of `characters` to return.
 String getFromPosition({int characters = 1})
 ```
 
+### deleteAllBeforePosition
+Deletes all the characters left of cursor `position`.
+
+```dart
+String getAllBeforePosition()
+```
+
+
+### deleteAllAfterPosition
+Deletes all the characters right of cursor `position`, excluding current cursor position.
+
+```dart
+String getAllAfterPosition()
+```
+
+
+### deleteAllFromPosition
+Deletes all character starting from cursor `position` and until the end of line.
+
+```dart
+String getAllFromPosition()
+```
 
 ### moveToListElement
 Moves cursor `position` until it finds any element in `values` and returns that element.
