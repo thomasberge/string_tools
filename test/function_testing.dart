@@ -410,7 +410,7 @@ test_deleteAllAfterPosition() {
   bool bugs = true;
   StringTools cursor = new StringTools("ABCDE");
   cursor.position = 2;
-  cursor.getAllAfterPosition()
+  cursor.deleteAllAfterPosition();
   if (cursor.data == "ABC") {
     bugs = false;
   }
@@ -426,7 +426,7 @@ test_deleteAllBeforePosition() {
   bool bugs = true;
   StringTools cursor = new StringTools("ABCDE");
   cursor.position = 2;
-  cursor.getAllBeforePosition()
+  cursor.deleteAllBeforePosition();
   if (cursor.data == "CDE") {
     bugs = false;
   }
