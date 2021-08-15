@@ -293,6 +293,12 @@ Deletes the selected `string`.
 void deleteSelection({bool reset_marks = true})
 ```
 
+### edgesIs
+Checks that the first and last character of the data object is the same as the first character of the supplied String.
+
+```dart
+bool edgesIs(String character)
+```
 
 ## Testing
 
