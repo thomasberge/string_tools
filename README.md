@@ -300,6 +300,13 @@ Checks that the first and last character of the data object is the same as the f
 bool edgesIs(String character)
 ```
 
+### deleteEdges
+Deletes the first and last character of the data object.
+
+```dart
+void deleteEdges()
+```
+
 ## Testing
 
 There is a test script included in /test that runs all functions in different variations and tests against the result. A report is written to console where each function is graded with a `OK` or `Failed`. If changes are made to string_tools then new functions should be added and all functions tested again to make sure they pass.
