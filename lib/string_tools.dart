@@ -385,6 +385,12 @@ class StringTools {
     }
   }
 
+  /// Check first and last
+  void deleteEdges() {
+    data = data.substring(1);
+    data = data.substring(0, data.length-1);
+  }
+
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if ((data.length) <= position) {

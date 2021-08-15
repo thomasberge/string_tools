@@ -147,6 +147,12 @@ main() {
     print("edgesIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }  
 
+  if (test_deleteEdges()) {
+    print("deleteEdges()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("deleteEdges()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }  
+
   print("Done!");
 }
 
@@ -577,6 +583,16 @@ test_edgesIs() {
   bool bugs = true;
   StringTools stringtools = new StringTools("abbbbabbba");
   if (stringtools.edgesIs("a")) {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_deleteEdges() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools("abbbbabbba");
+  stringtools.deleteEdges();
+  if (stringtools.data == "bbbbabbb") {
     bugs = false;
   }
   return bugs;
