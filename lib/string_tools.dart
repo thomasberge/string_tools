@@ -372,6 +372,19 @@ class StringTools {
     }
   }
 
+  /// Check first and last
+  bool edgesIs(String char) {
+    if (data.substring(0,1) == char) {
+      if(data.substring(data.length-1, data.length) == char) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if ((data.length) <= position) {

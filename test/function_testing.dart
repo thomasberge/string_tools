@@ -140,6 +140,13 @@ main() {
   } else {
     print("deleteSelection()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
+
+  if (test_edgesIs()) {
+    print("edgesIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("edgesIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }  
+
   print("Done!");
 }
 
@@ -561,6 +568,15 @@ test_deleteSelection() {
   stringtools.stopSelection();
   stringtools.deleteSelection();
   if (stringtools.data == "I am the best!") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_edgesIs() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools("abbbbabbba");
+  if (stringtools.edgesIs("a")) {
     bugs = false;
   }
   return bugs;
