@@ -134,6 +134,15 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 
 
 ### moveTo    
+Moves the cursor `position` forward until either end of line or `value` is found. It cursor `position` contains `value` then the `position` will not change. Use moveToNext instead. 
+
+Returns `true` if found and `false` if not.
+
+```dart
+bool moveTo(String value)
+```
+
+### moveToNext    
 Moves the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
