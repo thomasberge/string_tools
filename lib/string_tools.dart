@@ -156,7 +156,7 @@ class StringTools {
   ///  Returns `true` if found and `false` if not.
   bool moveToNext(String value) {
     move();
-    moveTo(value);
+    return moveTo(value);
   }
 
 
