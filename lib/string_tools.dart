@@ -151,6 +151,15 @@ class StringTools {
     }
   }
 
+  ///  Moves the cursor [position] forward until either end of line or [value] is found.
+  ///
+  ///  Returns `true` if found and `false` if not.
+  bool moveToNext(String value) {
+    move();
+    moveTo(value);
+  }
+
+
   // MOCKUP - NOT YET DONE!!!! DOES NOT WORK! IF USED WORLDS WILL COLLIDE!
   bool moveBackwardsFromEndUntil(String value) {
     bool not_found = true;
