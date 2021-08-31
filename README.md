@@ -320,7 +320,14 @@ void deleteEdges()
 Returns the count of occurances of the argument within the data object. It does not count overlap, meaning looking for the string argument "aaa" in the data object "aaaa" will return 1, not 2.
 
 ```dart
-void deleteEdges()
+int count(String argument)
+```
+
+### String getQuotedString()
+If the data object contain two double quotes then this function will return the String within the quotes.
+
+```dart
+String getQuotedString()
 ```
 
 ## Testing
