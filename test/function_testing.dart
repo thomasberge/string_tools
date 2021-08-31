@@ -151,6 +151,18 @@ main() {
     print("deleteEdges()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     print("deleteEdges()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_count()) {
+    print("count()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("count()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_getQuotedString()) {
+    print("getQuotedString()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("getQuotedString()\t\t\t[\u001b[32mOK\u001b[0m]");
   }  
 
   print("Done!");
@@ -593,6 +605,30 @@ test_deleteEdges() {
   StringTools stringtools = new StringTools("abbbbabbba");
   stringtools.deleteEdges();
   if (stringtools.data == "bbbbabbb") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_count() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools("abbbbabbba");
+  if (stringtools.count("a") == 3) {
+    if(stringtools.count("bbb") == 2) {
+      if(stringtools.count("ab") == 2) {
+        if(stringtools.count("@") == 0) {
+          bugs = false;
+        }
+      }
+    }
+  }
+  return bugs;
+}
+
+test_getQuotedString() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools('abba"abbbbabbba"abba');
+  if (stringtools.getQuotedString() == "abbbbabbba") {
     bugs = false;
   }
   return bugs;

@@ -400,6 +400,37 @@ class StringTools {
     data = data.substring(0, data.length-1);
   }
 
+  /// Extract one args from quotes
+  String getQuotedString() {
+    if(count('"') == 2) {
+      position = 0;
+      moveTo('"');
+      move();
+      startSelection();
+      moveTo('"');
+      stopSelection();
+      return(getSelection());
+    } else {
+      print("StringTools error, getQuotedString data contains more than two double quotes.");
+      return("");
+    }
+  }
+
+  /// Counts the occurance of the given string
+  int count(String string) {
+    int matches = 0;
+    int pos = 0;
+    while((pos + string.length) - 1 < data.length) {
+      if(data.substring(pos, pos + string.length) == string) {
+        matches++;
+        pos = pos + string.length - 1;
+      }
+      pos++;
+    }
+    return matches;
+    //return ((string.allMatches(data).length) / string.length).round();
+  }
+
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if ((data.length) <= position) {
