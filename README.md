@@ -302,15 +302,22 @@ Deletes the selected `string`.
 void deleteSelection({bool reset_marks = true})
 ```
 
-### edgesIs
+### bool edgesIs(String char)
 Checks that the first and last character of the data object is the same as the first character of the supplied String.
 
 ```dart
 bool edgesIs(String character)
 ```
 
-### deleteEdges
+### void deleteEdges()
 Deletes the first and last character of the data object.
+
+```dart
+void deleteEdges()
+```
+
+### int count(String argument)
+Returns the count of occurances of the argument within the data object. It does not count overlap, meaning looking for the string argument "aaa" in the data object "aaaa" will return 1, not 2.
 
 ```dart
 void deleteEdges()
