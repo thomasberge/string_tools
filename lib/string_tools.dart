@@ -416,6 +416,40 @@ class StringTools {
     }
   }
 
+  /// Extract the string between the two supplied string arguments
+  String getFromTo(String from, String to) {
+    if(moveTo(from)) {
+      move(characters: from.length);
+      startSelection();
+      if(moveTo(to)) {
+        stopSelection();
+        return getSelection();
+      } else {
+        print("StringTools error, getFromTo were unable to find 'to' value " + to + " in data.");
+        return("");
+      }
+    } else {
+      print("StringTools error, getFromTo were unable to find 'from' value " + from + " in data.");
+      return("");
+    }
+  }  
+
+  /// Delete the string between the two supplied string arguments
+  void deleteFromTo(String from, String to) {
+    if(moveTo(from)) {
+      move(characters: from.length);
+      startSelection();
+      if(moveTo(to)) {
+        stopSelection();
+        deleteSelection();
+      } else {
+        print("StringTools error, deleteFromTo were unable to find 'to' value " + to + " in data.");
+      }
+    } else {
+      print("StringTools error, deleteFromTo were unable to find 'from' value " + from + " in data.");
+    }
+  } 
+
   /// Counts the occurance of the given string
   int count(String string) {
     int matches = 0;

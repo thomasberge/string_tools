@@ -59,7 +59,42 @@ The order of the elements in the string doesn't matter. StringTools will find th
 There are a number of other usefull functions that will allow you to edit the string as if you were scripting a text editor.
 
 
-## Functions
+## Function index
+- countUntil [test anchor](#countuntil)
+- countCharacterSequenze
+- move
+- moveToEnd
+- insertAtPosition
+- replaceAtPosition
+- replaceCharacters
+- moveTo
+- moveToNext
+- moveBackwardsTo
+- getAllBeforePosition
+- getAllAfterPosition
+- getAllFromPosition
+- getBeforePosition
+- getAfterPosition
+- getFromPosition
+- deleteAllBeforePosition
+- deleteAllAfterPosition
+- deleteAllFromPosition
+- moveToListElement
+- deleteCharacters
+- findPosition
+- startSelection
+- stopSelection
+- getSelection
+- deleteSelection
+- edgesIs
+- deleteEdges
+- count
+- getQuotedString
+- getFromTo
+- deleteFromTo
+
+
+## Functions descriptions
 
 ### countUntil
 Counts forward from current cursor `position` until it finds the given `value`. 
@@ -328,6 +363,20 @@ If the data object contain two double quotes then this function will return the 
 
 ```dart
 String getQuotedString()
+```
+
+### getFromTo
+Extract the string between the two supplied string arguments.
+
+```dart
+String getFromTo(String from, String to)
+```
+
+### deleteFromTo
+Delete the string between the two supplied string arguments.
+
+```dart
+void deleteFromTo(String from, String to)
 ```
 
 ## Testing

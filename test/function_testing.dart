@@ -163,6 +163,18 @@ main() {
     print("getQuotedString()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     print("getQuotedString()\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_getFromTo()) {
+    print("getFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("getFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
+  }
+
+  if (test_deleteFromTo()) {
+    print("deleteFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("deleteFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
   }  
 
   print("Done!");
@@ -627,8 +639,28 @@ test_count() {
 
 test_getQuotedString() {
   bool bugs = true;
-  StringTools stringtools = new StringTools('abba"abbbbabbba"abba');
-  if (stringtools.getQuotedString() == "abbbbabbba") {
+  StringTools cursor = new StringTools('abba"abbbbabbba"abba');
+  if (cursor.getQuotedString() == "abbbbabbba") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_getFromTo() {
+  bool bugs = true;
+  StringTools cursor = new StringTools('thisis(not)awesome!');
+  String result = cursor.getFromTo("s(", ")a");
+  if (result == "not") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_deleteFromTo() {
+  bool bugs = true;
+  StringTools cursor = new StringTools('thisis(not)awesome!');
+  cursor.deleteFromTo("isis", "awe");
+  if (cursor.data == "thisisawesome!") {
     bugs = false;
   }
   return bugs;
