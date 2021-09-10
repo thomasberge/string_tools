@@ -60,38 +60,52 @@ There are a number of other usefull functions that will allow you to edit the st
 
 
 ## Function index
-- countUntil [test anchor](#countuntil)
-- countCharacterSequenze
-- move
-- moveToEnd
-- insertAtPosition
-- replaceAtPosition
-- replaceCharacters
-- moveTo
-- moveToNext
-- moveBackwardsTo
-- getAllBeforePosition
-- getAllAfterPosition
-- getAllFromPosition
-- getBeforePosition
-- getAfterPosition
-- getFromPosition
-- deleteAllBeforePosition
-- deleteAllAfterPosition
-- deleteAllFromPosition
-- moveToListElement
-- deleteCharacters
-- findPosition
-- startSelection
-- stopSelection
-- getSelection
-- deleteSelection
-- edgesIs
-- deleteEdges
-- count
-- getQuotedString
-- getFromTo
-- deleteFromTo
+
+##### Move cursor
+- [move](#move)
+- [moveToEnd](#movetoend)
+- [moveTo](#moveto)
+- [moveToNext](#movetonext)
+- [moveBackwardsTo](#movebackwardsto)
+- [moveToListElement](#movetolistelement)
+
+##### Selection
+- [startSelection](#startselection)
+- [stopSelection](#stopselection)
+- [getSelection](#getselection)
+- [deleteSelection](#deleteselection)
+
+##### Get
+- [getAllBeforePosition](#getallbeforeposition)
+- [getAllAfterPosition](#getallafterposition)
+- [getAllFromPosition](#getallfromposition)
+- [getBeforePosition](#getbeforeposition)
+- [getAfterPosition](#getafterposition)
+- [getFromPosition](#getfromposition)
+- [getQuotedString](#getquotedstring)
+- [getFromTo](#getfromto)
+
+##### Replace
+- [replaceAtPosition](#replaceatposition)
+- [replaceCharacters](#replacecharacters)
+
+##### Insert
+- [insertAtPosition](#insertatposition)
+
+##### Delete
+- [deleteAllBeforePosition](#deleteallbeforeposition)
+- [deleteAllAfterPosition](#deleteallafterposition)
+- [deleteAllFromPosition](#deleteallfromposition)
+- [deleteCharacters](#deletecharacters)
+- [deleteEdges](#deleteedges)
+- [deleteFromTo](#deletefromto)
+
+##### General Utilities
+- [countUntil](#countuntil)
+- [countCharacterSequenze](#countcharactersequenze)
+- [findPosition](#findposition)
+- [edgesIs](#edgesis)
+- [count](#count)
 
 
 ## Functions descriptions
