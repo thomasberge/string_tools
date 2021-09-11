@@ -106,13 +106,13 @@ There are a number of other usefull functions that will allow you to edit the st
 - [findPosition](#findposition)
 - [edgesIs](#edgesis)
 - [firstIs](#edgesis)
-- [lastIs](#edgesis) Returns if last string is the supplied string argument.
-- [count](#count) Counts number of non-overlapping strings.
+- [lastIs](#edgesis)
+- [count](#count)
 
 
 ## Functions descriptions
 
-### countUntil
+### countUntil [back to index](#general_utilities)
 Counts forward from current cursor `position` until it finds the given `value`. 
 
 Returns the absolute `position` of the first character of the `value`. If `relativePosition`
