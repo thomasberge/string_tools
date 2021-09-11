@@ -100,7 +100,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [deleteEdges](#deleteedges)
 - [deleteFromTo](#deletefromto)
 
-##### General Utilities
+##### General
 - [countUntil](#countuntil)
 - [countCharacterSequenze](#countcharactersequenze)
 - [findPosition](#findposition)
@@ -112,7 +112,7 @@ There are a number of other usefull functions that will allow you to edit the st
 
 ## Functions descriptions
 
-### countUntil &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general_utilities)<sub>
+### countUntil &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Counts forward from current cursor `position` until it finds the given `value`. 
 
 Returns the absolute `position` of the first character of the `value`. If `relativePosition`
