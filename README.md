@@ -124,7 +124,7 @@ int countUntil(String value, {bool relativePosition = false})
 ```
 
 
-### countCharacterSequenze    
+### countCharacterSequenze &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Counts neighbouring `character` to the right of cursor `position`.
 
 Only supports single `character` argument. If several string is provided only the first
@@ -135,7 +135,7 @@ int countCharacterSequenze(String character)
 ```
 
 
-### move    
+### move &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>
 Moves the cursor `position` a certain number of `characters`. 
 
 If it overshoots then the cursor `position` will be moved past the last character of the string.
@@ -145,7 +145,7 @@ void move({int characters = 1})
 ```
 
 
-### moveToEnd    
+### moveToEnd &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>  
 Moves the cursor position past the last character of the string.
 
 ```dart
@@ -153,7 +153,7 @@ void moveToEnd()
 ``` 
 
 
-### insertAtPosition
+### insertAtPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#insert)<sub>
 Inserts `value` at the current cursor `position`. 
 
 It expands the data as it does not replace any characters. If `cutOverflow` is true
@@ -164,7 +164,7 @@ void insertAtPosition(String value, {bool cutOverflow = false})
 ```
 
 
-### replaceAtPosition    
+### replaceAtPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#replace)<sub>
 Replace characters starting from current `position` with the supplied `value`. 
 
 Can optionally be set to `cutOverflow`, maintaining the original width of the data.
@@ -174,7 +174,7 @@ void replaceAtPosition(String value, {bool cutOverflow = false})
 ```
 
 
-### replaceCharacters
+### replaceCharacters &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#replace)<sub>
 Replaces a specific `character` from cursor `position` with `value`. 
 
 Can optionally be set to `cutOverflow`, maintaining the original width of the data.
@@ -184,7 +184,7 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 ```
 
 
-### moveTo    
+### moveTo &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>
 Moves the cursor `position` forward until either end of line or `value` is found. It cursor `position` contains `value` then the `position` will not change. Use moveToNext instead. 
 
 Returns `true` if found and `false` if not.
@@ -193,7 +193,7 @@ Returns `true` if found and `false` if not.
 bool moveTo(String value)
 ```
 
-### moveToNext    
+### moveToNext &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>
 Moves the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
@@ -203,7 +203,7 @@ bool moveTo(String value)
 ```
 
 
-### moveBackwardsTo
+### moveBackwardsTo &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>
 Moves the cursor `position` backwards until start of line or `value` is found.
 
 Returns `true` if found and `false` if not. The cursor `position` is set to the 
@@ -214,7 +214,7 @@ bool moveBackwardsTo(String value)
 ```
 
 
-### getAllBeforePosition
+### getAllBeforePosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns all the characters left of cursor `position`.
 
 ```dart
@@ -222,7 +222,7 @@ String getAllBeforePosition()
 ```
 
 
-### getAllAfterPosition
+### getAllAfterPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns all the characters right of cursor `position`, excluding current cursor position.
 
 ```dart
@@ -230,7 +230,7 @@ String getAllAfterPosition()
 ```
 
 
-### getAllFromPosition
+### getAllFromPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns all character starting from cursor `position` and until the end of line.
 
 ```dart
@@ -238,7 +238,7 @@ String getAllFromPosition()
 ```
 
 
-### getBeforePosition
+### getBeforePosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns the character left of cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -248,7 +248,7 @@ String getBeforePosition({int characters = 1})
 ```
 
 
-### getAfterPosition
+### getAfterPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns the character to the right of cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -258,7 +258,7 @@ String getAfterPosition({int characters = 1})
 ```
 
 
-### getFromPosition
+### getFromPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Returns the character from cursor `position`.
 
 Can optionally define number of `characters` to return.
@@ -267,7 +267,7 @@ Can optionally define number of `characters` to return.
 String getFromPosition({int characters = 1})
 ```
 
-### deleteAllBeforePosition
+### deleteAllBeforePosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Deletes all the characters left of cursor `position`.
 
 ```dart
@@ -275,7 +275,7 @@ String getAllBeforePosition()
 ```
 
 
-### deleteAllAfterPosition
+### deleteAllAfterPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Deletes all the characters right of cursor `position`, excluding current cursor position.
 
 ```dart
@@ -283,14 +283,14 @@ String getAllAfterPosition()
 ```
 
 
-### deleteAllFromPosition
+### deleteAllFromPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Deletes all character starting from cursor `position` and until the end of line.
 
 ```dart
 String getAllFromPosition()
 ```
 
-### moveToListElement
+### moveToListElement &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#move-cursor)<sub>
 Moves cursor `position` until it finds any element in `values` and returns that element.
 
 Reaching end of line returns a blank character.
@@ -300,7 +300,7 @@ String moveToListElement(List<String> values)
 ```
 
 
-### deleteCharacters
+### deleteCharacters &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Deletes a number of `characters`, starting with the cursor `position`.
 
 ```dart
@@ -308,7 +308,7 @@ void deleteCharacters(int characters)
 ```
 
 
-### findPosition
+### findPosition &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Finds absolute position of the next occurance of `value` starting from cursor `position`. 
 
 Returns `-1` if not present.
@@ -318,7 +318,7 @@ int findPosition(String value)
 ```
 
 
-### startSelection
+### startSelection &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#selection)<sub>
 Sets the start of a selection from cursors `position`.
 
 An optional `value` may set the selection start directly without relying on cursor `position`.
@@ -328,7 +328,7 @@ void startSelection({int? value = null})
 ```
 
 
-### stopSelection
+### stopSelection &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#selection)<sub>
 Sets the end of a selection from cursors `position`.
 
 An optional `value` may set the selection end directly without relying on cursor `position`.
@@ -338,7 +338,7 @@ void stopSelection({int? value = null, bool end_of_string = false})
 ```
 
 
-### getSelection
+### getSelection &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#selection)<sub>
 Returns the selected `string`. 
 
 ```dart
@@ -346,63 +346,63 @@ String getSelection()
 ```
 
 
-### deleteSelection
+### deleteSelection &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#selection)<sub>
 Deletes the selected `string`.
 
 ```dart
 void deleteSelection({bool reset_marks = true})
 ```
 
-### edgesIs
+### edgesIs &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Checks that the first and last string of the data object is the same as the supplied String.
 
 ```dart
 bool edgesIs(String string)
 ```
 
-### firstIs
+### firstIs &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Checks that the first characters of the data object is the same as the supplied String.
 
 ```dart
 bool firstIs(String character)
 ```
 
-### lastIs
+### lastIs &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Checks that the last characters of the data object is the same as the supplied String.
 
 ```dart
 bool lastIs(String character)
 ```
 
-### deleteEdges
+### deleteEdges &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Deletes the first and last character of the data object.
 
 ```dart
 void deleteEdges()
 ```
 
-### count
+### count &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
 Returns the count of occurances of the argument within the data object. It does not count overlap, meaning looking for the string argument "aaa" in the data object "aaaa" will return 1, not 2.
 
 ```dart
 int count(String argument)
 ```
 
-### getQuotedString
+### getQuotedString &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 If the data object contain two double quotes then this function will return the String within the quotes.
 
 ```dart
 String getQuotedString()
 ```
 
-### getFromTo
+### getFromTo &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#get)<sub>
 Extract the string between the two supplied string arguments.
 
 ```dart
 String getFromTo(String from, String to)
 ```
 
-### deleteFromTo
+### deleteFromTo &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#delete)<sub>
 Delete the string between the two supplied string arguments.
 
 ```dart
