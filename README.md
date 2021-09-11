@@ -114,6 +114,7 @@ There are a number of other usefull functions that will allow you to edit the st
 
 ### countUntil
 &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
+
 Counts forward from current cursor `position` until it finds the given `value`. 
 
 Returns the absolute `position` of the first character of the `value`. If `relativePosition`
@@ -127,6 +128,7 @@ int countUntil(String value, {bool relativePosition = false})
 
 ### countCharacterSequenze
 &nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
+
 Counts neighbouring `character` to the right of cursor `position`.
 
 Only supports single `character` argument. If several string is provided only the first
