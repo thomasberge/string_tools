@@ -127,7 +127,7 @@ int countUntil(String value, {bool relativePosition = false})
 
 
 ### countCharacterSequenze
-&nbsp;&nbsp;&nbsp;&nbsp;<sup>[index](#general)<sub>
+<div style="text-align: right"><sup>[index](#general)<sub></div>
 
 Counts neighbouring `character` to the right of cursor `position`.
 
