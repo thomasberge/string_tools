@@ -381,10 +381,10 @@ class StringTools {
     }
   }
 
-  /// Check first and last
-  bool edgesIs(String char) {
-    if (data.substring(0,1) == char) {
-      if(data.substring(data.length-1, data.length) == char) {
+  /// Check if first and last are the same as the supplied string
+  bool edgesIs(String string) {
+    if (data.substring(0, string.length) == string) {
+      if(data.substring(data.length-string.length) == string) {
         return true;
       } else {
         return false;
@@ -393,6 +393,24 @@ class StringTools {
       return false;
     }
   }
+
+  /// Check if first is the same as the supplied string
+  bool firstIs(String string) {
+    if (data.substring(0,string.length) == string) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /// Check if last is the same as the supplied string
+  bool lastIs(String string) {
+    if (data.substring(data.length-string.length) == string) {
+      return true;
+    } else {
+      return false;
+    }
+  } 
 
   /// Check first and last
   void deleteEdges() {

@@ -145,6 +145,18 @@ main() {
     print("edgesIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     print("edgesIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_firstIs()) {
+    print("firstIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("firstIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+  }
+
+  if (test_lastIs()) {
+    print("lastIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    print("lastIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }  
 
   if (test_deleteEdges()) {
@@ -576,6 +588,11 @@ test_findPosition() {
   return bugs;
 }
 
+/*  
+  Example:    "I am not the best!"
+
+  With a start_position of 5 and a stop_position of 8, test_getSelection() returns "not".
+*/
 test_getSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");
@@ -589,6 +606,11 @@ test_getSelection() {
   return bugs;
 }
 
+/*  
+  Example:    "I am not the best!"
+
+  With a start_position of 5 and a stop_position of 9, test_deleteSelection() deletes "not ".
+*/
 test_deleteSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");
@@ -603,25 +625,47 @@ test_deleteSelection() {
   return bugs;
 }
 
+/*  
+  Example:    "abbbbabbba"
+
+  With the first and last characters being "a", edgesIs("a") returns true.
+
+  Examole2:   "abaab"
+
+  With the first and last string being "ab", edgesIs("ab") returns true.
+*/
 test_edgesIs() {
   bool bugs = true;
   StringTools stringtools = new StringTools("abbbbabbba");
   if (stringtools.edgesIs("a")) {
-    bugs = false;
+    stringtools.data = "12ab12";
+    if (stringtools.edgesIs("12")) {
+      bugs = false;
+    }
   }
   return bugs;
 }
 
+/*  
+  Example:    "1234"
+
+  deleteEdges() deletes the first and last character, setting data to "23".
+*/
 test_deleteEdges() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("abbbbabbba");
+  StringTools stringtools = new StringTools("1234");
   stringtools.deleteEdges();
-  if (stringtools.data == "bbbbabbb") {
+  if (stringtools.data == "23") {
     bugs = false;
   }
   return bugs;
 }
 
+/*  
+  Example:    "abbbbabbba"
+
+  counts number of non-overlapping strings in data.
+*/
 test_count() {
   bool bugs = true;
   StringTools stringtools = new StringTools("abbbbabbba");
@@ -661,6 +705,24 @@ test_deleteFromTo() {
   StringTools cursor = new StringTools('thisis(not)awesome!');
   cursor.deleteFromTo("isis", "awe");
   if (cursor.data == "thisisawesome!") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_firstIs() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools("abbbbabbba");
+  if (stringtools.firstIs("abb")) {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_lastIs() {
+  bool bugs = true;
+  StringTools stringtools = new StringTools("abbbbabbba");
+  if (stringtools.lastIs("bba")) {
     bugs = false;
   }
   return bugs;

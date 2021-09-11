@@ -105,7 +105,9 @@ There are a number of other usefull functions that will allow you to edit the st
 - [countCharacterSequenze](#countcharactersequenze)
 - [findPosition](#findposition)
 - [edgesIs](#edgesis)
-- [count](#count)
+- [firstIs](#edgesis)
+- [lastIs](#edgesis) Returns if last string is the supplied string argument.
+- [count](#count) Counts number of non-overlapping strings.
 
 
 ## Functions descriptions
@@ -352,10 +354,24 @@ void deleteSelection({bool reset_marks = true})
 ```
 
 ### edgesIs
-Checks that the first and last character of the data object is the same as the first character of the supplied String.
+Checks that the first and last string of the data object is the same as the supplied String.
 
 ```dart
-bool edgesIs(String character)
+bool edgesIs(String string)
+```
+
+### firstIs
+Checks that the first characters of the data object is the same as the supplied String.
+
+```dart
+bool firstIs(String character)
+```
+
+### lastIs
+Checks that the last characters of the data object is the same as the supplied String.
+
+```dart
+bool lastIs(String character)
 ```
 
 ### deleteEdges
