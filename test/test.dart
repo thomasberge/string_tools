@@ -705,7 +705,11 @@ test_deleteFromTo() {
   StringTools cursor = new StringTools('thisis(not)awesome!');
   cursor.deleteFromTo("isis", "awe");
   if (cursor.data == "thisisawesome!") {
-    bugs = false;
+    cursor.reset();
+    cursor.deleteFromTo("isis", "wes", deleteArguments: true);
+    if(cursor.data == "thome!") {
+      bugs = false;
+    }
   }
   return bugs;
 }

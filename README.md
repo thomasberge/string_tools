@@ -403,10 +403,17 @@ String getFromTo(String from, String to)
 ```
 
 ### deleteFromTo
-Delete the string between the two supplied string arguments.
+Delete the string between the two supplied string arguments. If the optional deleteArguments is set to ```True``` then the supplied arguments will also be deleted.
 
 ```dart
-void deleteFromTo(String from, String to)
+void deleteFromTo(String from, String to, { bool deleteArguments = false })
+```
+
+### reset
+Clears selection and resets position to 0. Does not clear the data.
+
+```dart
+void reset()
 ```
 
 ## Testing

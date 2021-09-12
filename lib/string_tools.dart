@@ -453,11 +453,16 @@ class StringTools {
   }  
 
   /// Delete the string between the two supplied string arguments
-  void deleteFromTo(String from, String to) {
+  void deleteFromTo(String from, String to, { bool deleteArguments = false}) {
     if(moveTo(from)) {
-      move(characters: from.length);
+      if (deleteArguments == false) {
+        move(characters: from.length);
+      }
       startSelection();
       if(moveTo(to)) {
+        if (deleteArguments == true) {
+          move(characters: to.length);
+        }        
         stopSelection();
         deleteSelection();
       } else {
@@ -481,6 +486,13 @@ class StringTools {
     }
     return matches;
     //return ((string.allMatches(data).length) / string.length).round();
+  }
+
+  /// Clears selection values and resets position to 0
+  void reset() {
+    start_selection = 0;
+    stop_selection = 0;
+    position = 0;
   }
 
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
