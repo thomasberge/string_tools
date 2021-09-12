@@ -108,6 +108,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [firstIs](#edgesis)
 - [lastIs](#edgesis)
 - [count](#count)
+- [reset](#reset)
 
 
 ## Functions descriptions
