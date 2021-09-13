@@ -429,7 +429,7 @@ class StringTools {
       stopSelection();
       return(getSelection());
     } else {
-      print("StringTools error, getQuotedString data contains more than two double quotes.");
+      print("StringTools error, getQuotedString data does not contain two double quotes: " + data.toString());
       return("");
     }
   }
