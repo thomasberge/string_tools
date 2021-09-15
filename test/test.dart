@@ -1,195 +1,276 @@
 import 'string_tools.dart';
 
 main() {
-  print("Testing StringTools functions:");
+  print("\r\n\r\n                   :: Running Test Script ::\r\n");
+  int cleared = 0;
+  int failed = 0;
 
   if (test_move()) {
-    print("move()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tmove()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("move()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("move()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_moveTo()) {
-    print("moveTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tmoveTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("moveTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("moveTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_moveBackwardsTo()) {
-    print("moveBackwardsTo()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tmoveBackwardsTo()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("moveBackwardsTo()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("moveBackwardsTo()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_moveToEnd()) {
-    print("moveToEnd()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tmoveToEnd()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("moveToEnd()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("moveToEnd()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_countUntil()) {
-    print("countUntil()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tcountUntil()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("countUntil()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("countUntil()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_countCharacterSequenze()) {
-    print("countCharacterSequenze()\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tcountCharacterSequenze()\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("countCharacterSequenze()\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("countCharacterSequenze()\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_insertAtPosition()) {
-    print("insertAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tinsertAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("insertAtPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("insertAtPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_replaceAtPosition()) {
-    print("replaceAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\treplaceAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("replaceAtPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("replaceAtPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_replaceCharacters()) {
-    print("replaceCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\treplaceCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("replaceCharacters()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("replaceCharacters()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getAllFromPosition()) {
-    print("getAllFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetAllFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getAllFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getAllAfterPosition()) {
-    print("getAllAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetAllAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getAllAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getAllBeforePosition()) {
-    print("getAllBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetAllBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAllBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getAllBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getFromPosition()) {
-    print("getFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getAfterPosition()) {
-    print("getAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getBeforePosition()) {
-    print("getBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_deleteAllFromPosition()) {
-    print("deleteFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteFromPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_deleteAllAfterPosition()) {
-    print("deleteAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteAfterPosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_deleteAllBeforePosition()) {
-    print("deleteBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteBeforePosition()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_moveToListElement()) {
-    print("moveToListElement()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tmoveToListElement()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("moveToListElement()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("moveToListElement()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_deleteCharacters()) {
-    print("deleteCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteCharacters()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteCharacters()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_findPosition()) {
-    print("findPosition()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tfindPosition()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("findPosition()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("findPosition()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getSelection()) {
-    print("getSelection()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetSelection()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getSelection()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getSelection()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_deleteSelection()) {
-    print("deleteSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteSelection()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteSelection()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_edgesIs()) {
-    print("edgesIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tedgesIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("edgesIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("edgesIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_firstIs()) {
-    print("firstIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tfirstIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("firstIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("firstIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_lastIs()) {
-    print("lastIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tlastIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("lastIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("lastIs()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }  
 
   if (test_deleteEdges()) {
-    print("deleteEdges()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteEdges()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteEdges()\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("deleteEdges()\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_count()) {
-    print("count()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tcount()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("count()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("count()\t\t\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getQuotedString()) {
-    print("getQuotedString()\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetQuotedString()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getQuotedString()\t\t\t[\u001b[32mOK\u001b[0m]");
+    cleared++;
+    //print("getQuotedString()\t\t\t[\u001b[32mOK\u001b[0m]");
   }
 
   if (test_getFromTo()) {
-    print("getFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tgetFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("getFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
+    cleared++;
+    //print("getFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
   }
 
   if (test_deleteFromTo()) {
-    print("deleteFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    failed++;
+    print("\tdeleteFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
-    print("deleteFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
+    cleared++;
+    //print("deleteFromTo()\t\t\t\t[\u001b[32mOK\u001b[0m]");   
+  }
+
+  if (test_replaceSelection()) {
+    failed++;
+    print("\treplaceSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+    //print("replaceSelection()\t\t\t[\u001b[32mOK\u001b[0m]");   
   }  
 
-  print("Done!");
+  print("\r\n---------------------------------------------------------------");
+
+  if(failed == 0) {
+    print("\r\n             [" + cleared.toString() + "/" + cleared.toString() + "] tests completed without fail.\r\n");
+  } else {
+    print("\r\n  [\u001b[31m" + cleared.toString() + "\u001b[0m/" + (cleared + failed).toString() + "] tests completed without fail. Review errors above.\r\n");
+  }
+
+  print("---------------------------------------------------------------\r\n");
+
 }
 
 bool test_move() {
@@ -653,9 +734,9 @@ test_edgesIs() {
 */
 test_deleteEdges() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("1234");
-  stringtools.deleteEdges();
-  if (stringtools.data == "23") {
+  StringTools cursor = new StringTools("1234");
+  cursor.deleteEdges();
+  if (cursor.data == "23") {
     bugs = false;
   }
   return bugs;
@@ -668,11 +749,11 @@ test_deleteEdges() {
 */
 test_count() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("abbbbabbba");
-  if (stringtools.count("a") == 3) {
-    if(stringtools.count("bbb") == 2) {
-      if(stringtools.count("ab") == 2) {
-        if(stringtools.count("@") == 0) {
+  StringTools cursor = new StringTools("abbbbabbba");
+  if (cursor.count("a") == 3) {
+    if(cursor.count("bbb") == 2) {
+      if(cursor.count("ab") == 2) {
+        if(cursor.count("@") == 0) {
           bugs = false;
         }
       }
@@ -716,8 +797,8 @@ test_deleteFromTo() {
 
 test_firstIs() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("abbbbabbba");
-  if (stringtools.firstIs("abb")) {
+  StringTools cursor = new StringTools("abbbbabbba");
+  if (cursor.firstIs("abb")) {
     bugs = false;
   }
   return bugs;
@@ -725,9 +806,27 @@ test_firstIs() {
 
 test_lastIs() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("abbbbabbba");
-  if (stringtools.lastIs("bba")) {
+  StringTools cursor = new StringTools("abbbbabbba");
+  if (cursor.lastIs("bba")) {
     bugs = false;
+  }
+  return bugs;
+}
+
+test_replaceSelection() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("Get off my lawn!");
+  cursor.moveTo("my");
+  cursor.startSelection();
+  cursor.moveTo("!");
+  cursor.stopSelection();
+  if (cursor.getSelection() == "my lawn") {
+    cursor.replaceSelection("the carpet");
+    if(cursor.data == "Get off the carpet!") {
+      if(cursor.getSelection() == "the carpet") {
+        bugs = false;
+      }
+    }
   }
   return bugs;
 }

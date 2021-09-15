@@ -495,6 +495,14 @@ class StringTools {
     position = 0;
   }
 
+  /// Replaces the selected string with the supplied argument. Selects the new string.
+  void replaceSelection(String string) {
+    deleteSelection(reset_marks: false);
+    position = start_selection;
+    insertAtPosition(string);
+    stop_selection = start_selection + string.length;
+  }
+
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if ((data.length) <= position) {

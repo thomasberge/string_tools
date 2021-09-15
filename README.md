@@ -74,6 +74,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [stopSelection](#stopselection)
 - [getSelection](#getselection)
 - [deleteSelection](#deleteselection)
+- [replaceSelection](#replaceselection)
 
 ##### Get
 - [getAllBeforePosition](#getallbeforeposition)
@@ -415,6 +416,13 @@ Clears selection and resets position to 0. Does not clear the data.
 
 ```dart
 void reset()
+```
+
+### replaceSelection
+Replaces the selected text with the supplied argument. The new text will be selected.
+
+```dart
+void replaceSelection(String argument)
 ```
 
 ## Testing
