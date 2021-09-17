@@ -74,6 +74,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [stopSelection](#stopselection)
 - [getSelection](#getselection)
 - [deleteSelection](#deleteselection)
+- [deleteEdgesOfSelection](#deleteedgesofselection)
 - [replaceSelection](#replaceselection)
 
 ##### Get
@@ -420,6 +421,13 @@ void reset()
 
 ### replaceSelection
 Replaces the selected text with the supplied argument. The new text will be selected.
+
+```dart
+void replaceSelection(String argument)
+```
+
+### deleteEdgesOfSelection
+Deletes the first and last character of the selected text. Adjusts the selection.
 
 ```dart
 void replaceSelection(String argument)

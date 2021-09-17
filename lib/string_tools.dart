@@ -302,11 +302,17 @@ class StringTools {
     }
   }
 
-  /// Deletes a number of [characters], starting with the cursor [position].
-  void deleteCharacters(int characters) {
-    String first = data.substring(0, position);
-    String last = data.substring(position + characters);
-    data = first + last;
+  /// Deletes a number of [characters], starting with the cursor [position] unless fromPosition is provided.
+  void deleteCharacters(int characters, {int fromPosition = -1}) {
+    if(fromPosition > -1) {
+      String first = data.substring(0, fromPosition);
+      String last = data.substring(fromPosition + characters);
+      data = first + last;
+    } else {
+      String first = data.substring(0, position);
+      String last = data.substring(position + characters);
+      data = first + last;
+    }
   }
 
   /// Finds absolute position of the next occurance of [value] starting from cursor [position].
@@ -471,7 +477,15 @@ class StringTools {
     } else {
       print("StringTools error, deleteFromTo were unable to find 'from' value " + from + " in data.");
     }
-  } 
+  }
+
+  /// Deletes the first and last character of the current selection
+  void deleteEdgesOfSelection() {
+    deleteCharacters(1, fromPosition: start_selection);
+    stop_selection = stop_selection -1;
+    deleteCharacters(1, fromPosition: stop_selection - 1);
+    stop_selection = stop_selection -1;
+  }
 
   /// Counts the occurance of the given string
   int count(String string) {
