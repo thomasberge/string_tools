@@ -517,6 +517,50 @@ class StringTools {
     stop_selection = start_selection + string.length;
   }
 
+  ///  Moves the cursor [position] forward until either end of line or the selected string
+  ///  matches the regular expressions. The test is done on a substring based on the width
+  ///  argument.
+  ///
+  ///  Returns `true` if found and `false` if not.
+  bool moveToRegex(RegExp exp, {int width = 1}) {
+    bool not_found = true;
+    while (not_found) {
+      if ((position + width) > data.length) {
+        return false;
+      } else {
+        String temp = data.substring(position, (position + width));
+        if (exp.hasMatch(temp)) {
+          return true;
+        } else {
+          position++;
+          _checkEndOfLine();
+        }
+      }
+    }
+  }
+
+  ///  Moves the cursor [position] forward until either end of line or the selected string
+  ///  matches the regular expressions. The test is done on a substring based on the width
+  ///  argument.
+  ///
+  ///  Returns `true` if found and `false` if not.
+  void moveWhileRegex(RegExp exp, {int width = 1}) {
+    bool found = true;
+    while (found) {
+      if ((position + width) > data.length) {
+        found = false;
+      } else {
+        String temp = data.substring(position, (position + width));
+        if (exp.hasMatch(temp)) {
+          position++;
+        } else {
+          found = false;
+          _checkEndOfLine();
+        }
+      }
+    }
+  }
+
   /// Checks if cursor position is past data boundary and sets eol (endOfLine) flag.
   void _checkEndOfLine() {
     if ((data.length) <= position) {

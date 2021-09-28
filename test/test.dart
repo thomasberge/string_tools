@@ -235,6 +235,20 @@ main() {
     print("\tdeleteEdgesOfSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     cleared++;
+  }
+
+  if (test_moveToRegex()) {
+    failed++;
+    print("\tmoveToRegex()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+  }
+
+  if (test_moveWhileRegex()) {
+    failed++;
+    print("\tmoveWhileRegex()\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
   }  
 
   print("\r\n---------------------------------------------------------------");
@@ -819,6 +833,41 @@ test_deleteEdgesOfSelection() {
   if(cursor.getSelection() == "33") {
     if(cursor.data == "1331") {
       bugs = false;
+    }
+  }
+  return bugs;
+}
+
+test_moveToRegex() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("5 * (43 - number1 + number2) / 12");
+  RegExp exp1 = new RegExp(r"^[a-zA-Z]*$", caseSensitive: false);
+  cursor.moveToRegex(exp1);
+  if(cursor.getFromPosition(characters: 6) == "number") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_moveWhileRegex() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("5 * (43 - Number1 + number2) / 12");
+  RegExp exp1 = new RegExp(r"^[a-z]*$", caseSensitive: false);
+  RegExp exp2 = new RegExp(r"^[a-z0-9_]*$", caseSensitive: false);
+  cursor.moveToRegex(exp1);
+  cursor.startSelection();
+  if(cursor.getFromPosition(characters: 6) == "Number") {
+    cursor.moveWhileRegex(exp2);
+    cursor.stopSelection();
+    if(cursor.getSelection() == "Number1") {
+      if(cursor.moveToRegex(exp1)) {
+        cursor.startSelection();
+        cursor.moveWhileRegex(exp2);
+        cursor.stopSelection();
+        if(cursor.getSelection() == "number2") {
+          bugs = false;
+        }
+      }
     }
   }
   return bugs;

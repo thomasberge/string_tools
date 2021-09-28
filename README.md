@@ -68,6 +68,8 @@ There are a number of other usefull functions that will allow you to edit the st
 - [moveToNext](#movetonext)
 - [moveBackwardsTo](#movebackwardsto)
 - [moveToListElement](#movetolistelement)
+- [moveToRegex](#movetoregex)
+- [moveWhileRegex](#movewhileregex)
 
 ##### Selection
 - [startSelection](#startselection)
@@ -431,6 +433,20 @@ Deletes the first and last character of the selected text. Adjusts the selection
 
 ```dart
 void replaceSelection(String argument)
+```
+
+### moveToRegex
+Moves the cursor until it hits a character or word that matches the supplied regular expression argument or until end of line. ```True``` will be returned if it finds a match and ```False``` if it reaches end of line without any match. The width of characters to test on default to 1 (single character) but can be overridden with the named ```width``` argument.
+
+```dart
+bool moveToRegex(RegExp expression, {int width = 1})
+```
+
+### moveWhileRegex
+Moves the cursor while the characters in the supplied regular expression matches. Will stop at the first non-match string or at the end of line. The width being tested defaults to 1 but can be overridden.
+
+```dart
+void moveWhileRegex(RegExp expression, {int width = 1})
 ```
 
 ## Testing
