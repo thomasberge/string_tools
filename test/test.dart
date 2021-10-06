@@ -208,9 +208,37 @@ main() {
     cleared++;
   }
 
+  if (test_selectTo()) {
+    failed++;
+    print("\tselectTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+  }
+
+  if (test_selectFromTo()) {
+    failed++;
+    print("\tselectFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+  }
+
+  if (test_selectFromToWithIgnoreES()) {
+    failed++;
+    print("\tselectFromToWithIgnoreES()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+  }
+
   if (test_getFromTo()) {
     failed++;
     print("\tgetFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+  } else {
+    cleared++;
+  }
+
+  if (test_getFromToWithIgnoreES()) {
+    failed++;
+    print("\tgetFromToWithIgnoreES()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     cleared++;
   }
@@ -221,7 +249,7 @@ main() {
   } else {
     cleared++;
   }
-
+  
   if (test_replaceSelection()) {
     failed++;
     print("\treplaceSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
@@ -284,10 +312,12 @@ bool test_move() {
 
 bool test_moveTo() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("High as a kite!");
-  stringtools.moveTo("as");
-  if (stringtools.position == 5) {
-    bugs = false;
+  StringTools cursor = new StringTools("High as a kite!");
+  cursor.moveTo("as");
+  if (cursor.position == 5) {
+    if(cursor.moveTo('!')) {
+      bugs = false;
+    }
   }
   return bugs;
 }
@@ -761,11 +791,57 @@ test_getQuotedString() {
   return bugs;
 }
 
+test_selectTo() {
+  bool bugs = true;
+  StringTools cursor = new StringTools('1234586789');
+  cursor.move();
+  cursor.selectTo("8");
+  if (cursor.getSelection() == "2345") {
+    cursor.reset();
+    cursor.move();
+    cursor.selectTo("8", includeArgument: true);
+    if(cursor.getSelection() == "23458") {
+      bugs = false;
+    }
+  }
+  return bugs;
+}
+
+test_selectFromTo() {
+  bool bugs = true;
+  StringTools cursor = new StringTools('thisis(not)awesome!');
+  cursor.selectFromTo("s(", ")a");
+  if (cursor.getSelection() == "not") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_selectFromToWithIgnoreES() {
+  bool bugs = true;
+  StringTools cursor = new StringTools(r'print("This is a \"quoted\" string.")');
+  cursor.selectFromTo('"', '"', ignoreEscape: true);
+  if (cursor.getSelection() == r'This is a \"quoted\" string.') {
+    bugs = false;
+  }
+  return bugs;
+}
+
 test_getFromTo() {
   bool bugs = true;
   StringTools cursor = new StringTools('thisis(not)awesome!');
   String result = cursor.getFromTo("s(", ")a");
   if (result == "not") {
+    bugs = false;
+  }
+  return bugs;
+}
+
+test_getFromToWithIgnoreES() {
+  bool bugs = true;
+  StringTools cursor = new StringTools(r'print("This is a \"quoted\" string.")');
+  String result = cursor.getFromTo('"', '"', ignoreEscape: true);
+  if (result == r'This is a \"quoted\" string.') {
     bugs = false;
   }
   return bugs;

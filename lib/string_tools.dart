@@ -3,11 +3,12 @@
 // © 2021 Thomas Sebastian Berge
 
 library string_tools;
+import 'dart:convert';
 
 class StringTools {
   int position = 0;
   int width = 1;
-  String data;
+  var data = r"";
   int start_selection = 0;
   int stop_selection = 0;
   bool eol = false;
@@ -367,20 +368,12 @@ class StringTools {
   }
 
   /// Deletes the selected `string`.
-  void deleteSelection({bool reset_marks = true}) {
+  void deleteSelection() {
     if (stop_selection - start_selection > 0) {
       String first = data.substring(0, start_selection);
       String last = data.substring(stop_selection);
       data = first + last;
-      if (position > start_selection && position < stop_selection) {
-        position = start_selection;
-      } else if (position > stop_selection) {
-        position = position - (stop_selection - start_selection);
-      }
-      if (reset_marks) {
-        start_selection = 0;
-        stop_selection = 0;
-      }
+      position = start_selection;
       _checkEndOfLine();
     } else {
       print("StringTools error, tried to delete marked length of 0 or less.");
@@ -422,6 +415,9 @@ class StringTools {
   void deleteEdges() {
     data = data.substring(1);
     data = data.substring(0, data.length-1);
+    if(position > 0) {
+      position--;
+    }
   }
 
   /// Extract one args from quotes
@@ -440,23 +436,102 @@ class StringTools {
     }
   }
 
-  /// Extract the string between the two supplied string arguments
-  String getFromTo(String from, String to) {
-    if(moveTo(from)) {
-      move(characters: from.length);
-      startSelection();
+  /// Selects the string between the current cursor position and until the supplied string argument
+  void selectTo(String to, {bool ignoreEscape = false, bool includeArgument = false}) {
+    startSelection();
+    bool run = true;
+
+    while(run) {
       if(moveTo(to)) {
-        stopSelection();
-        return getSelection();
+        if(getBeforePosition() == '\\' && ignoreEscape) {
+          move();
+        } else {
+          if(includeArgument) {
+            move(characters: to.length);
+          }
+          stopSelection();
+          run = false;
+        }
+      } else {
+        print("StringTools error, selectTo were unable to find 'to' value " + to + " in data.");
+        break;
+      }
+    }    
+  }
+
+  /// Selects the string between the two supplied string arguments
+  void selectFromTo(String from, String to, {bool ignoreEscape = false}) {
+    bool run = true;
+
+    while(run) {
+      if(moveTo(from)) {
+        
+        if(getBeforePosition() == '\\' && ignoreEscape) {
+          move();
+        } else {
+          move(characters: from.length);
+          startSelection();
+          run = false;
+        }
+      } else {
+        print("StringTools error, selectFromTo were unable to find 'from' value " + from + " in data.");
+        break;
+      }
+    }
+
+    run = true;
+
+    while(run) {
+      if(moveTo(to)) {
+        if(getBeforePosition() == '\\' && ignoreEscape) {
+          move();
+        } else {
+          stopSelection();
+          run = false;
+        }
+      } else {
+        print("StringTools error, selectFromTo were unable to find 'to' value " + to + " in data.");
+        break;
+      }
+    }    
+  }
+
+  /// Extract the string between the two supplied string arguments
+  String getFromTo(String from, String to, {bool ignoreEscape = false}) {
+    bool run = true;
+
+    while(run) {
+      if(moveTo(from)) {
+        
+        if(getBeforePosition() == '\\' && ignoreEscape) {
+          move();
+        } else {
+          move(characters: from.length);
+          startSelection();
+          run = false;
+        }
+      } else {
+        print("StringTools error, getFromTo were unable to find 'from' value " + from + " in data.");
+        return("");
+      }
+    }
+
+    run = true;
+
+    while(run) {
+      if(moveTo(to)) {
+        if(getBeforePosition() == '\\' && ignoreEscape) {
+          move();
+        } else {
+          stopSelection();
+          return getSelection();
+        }
       } else {
         print("StringTools error, getFromTo were unable to find 'to' value " + to + " in data.");
         return("");
       }
-    } else {
-      print("StringTools error, getFromTo were unable to find 'from' value " + from + " in data.");
-      return("");
-    }
-  }  
+    }    
+  }
 
   /// Delete the string between the two supplied string arguments
   void deleteFromTo(String from, String to, { bool deleteArguments = false}) {
@@ -511,8 +586,7 @@ class StringTools {
 
   /// Replaces the selected string with the supplied argument. Selects the new string.
   void replaceSelection(String string) {
-    deleteSelection(reset_marks: false);
-    position = start_selection;
+    deleteSelection();
     insertAtPosition(string);
     stop_selection = start_selection + string.length;
   }

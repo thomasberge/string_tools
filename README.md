@@ -78,6 +78,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [deleteSelection](#deleteselection)
 - [deleteEdgesOfSelection](#deleteedgesofselection)
 - [replaceSelection](#replaceselection)
+- [selectFromTo](#selectfromto)
 
 ##### Get
 - [getAllBeforePosition](#getallbeforeposition)
@@ -195,7 +196,7 @@ Moves the cursor `position` forward until either end of line or `value` is found
 Returns `true` if found and `false` if not.
 
 ```dart
-bool moveTo(String value)
+bool moveToNext(String value)
 ```
 
 ### moveToNext
@@ -352,10 +353,10 @@ String getSelection()
 
 
 ### deleteSelection
-Deletes the selected `string`.
+Deletes the selected `string`. The cursor `position` is set to the start location of the selection after it has been deleted.
 
 ```dart
-void deleteSelection({bool reset_marks = true})
+void deleteSelection()
 ```
 
 ### edgesIs
@@ -400,11 +401,25 @@ If the data object contain two double quotes then this function will return the 
 String getQuotedString()
 ```
 
-### getFromTo
-Extract the string between the two supplied string arguments.
+### selectTo
+Selects the string from cursor ```position``` and to the supplied string argument. If ```ignoreEscape``` is set to ```True``` then the ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArgument``` is set then the function will also select the detected argument.
 
 ```dart
-String getFromTo(String from, String to)
+void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArgument = false})
+```
+
+### selectFromTo
+Selects the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
+
+```dart
+void selectFromTo(String from, String to, {bool ignoreEscape = false})
+```
+
+### getFromTo
+Extract the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
+
+```dart
+String getFromTo(String from, String to, {bool ignoreEscape = false})
 ```
 
 ### deleteFromTo
