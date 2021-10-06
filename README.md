@@ -79,6 +79,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [deleteEdgesOfSelection](#deleteedgesofselection)
 - [replaceSelection](#replaceselection)
 - [selectFromTo](#selectfromto)
+- [selectTo](#selectto)
 
 ##### Get
 - [getAllBeforePosition](#getallbeforeposition)
@@ -405,7 +406,7 @@ String getQuotedString()
 Selects the string from cursor ```position``` and to the supplied string argument. If ```ignoreEscape``` is set to ```True``` then the ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArgument``` is set then the function will also select the detected argument.
 
 ```dart
-void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArgument = false})
+void selectTo(String from, String to, {bool ignoreEscape = false, bool includeArgument = false})
 ```
 
 ### selectFromTo
