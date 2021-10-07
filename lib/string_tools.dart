@@ -460,7 +460,7 @@ class StringTools {
   }
 
   /// Selects the string between the two supplied string arguments
-  void selectFromTo(String from, String to, {bool ignoreEscape = false}) {
+  void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
     bool run = true;
 
     while(run) {
@@ -487,6 +487,12 @@ class StringTools {
           move();
         } else {
           stopSelection();
+
+          if(includeArguments) {
+            start_selection = start_selection -1;
+            stop_selection = stop_selection + to.length;
+          }
+
           run = false;
         }
       } else {

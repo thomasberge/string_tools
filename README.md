@@ -403,17 +403,17 @@ String getQuotedString()
 ```
 
 ### selectTo
-Selects the string from cursor ```position``` and to the supplied string argument. If ```ignoreEscape``` is set to ```True``` then the ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArgument``` is set then the function will also select the detected argument.
+Selects the string from cursor ```position``` and to the supplied string argument. If ```ignoreEscape``` is set to ```True``` then the ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArgument``` is set to ```True``` then the function will also select the detected argument.
 
 ```dart
 void selectTo(String from, String to, {bool ignoreEscape = false, bool includeArgument = false})
 ```
 
 ### selectFromTo
-Selects the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
+Selects the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArguments``` are set to ```True``` then the function will also select the detected argument.
 
 ```dart
-void selectFromTo(String from, String to, {bool ignoreEscape = false})
+void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false})
 ```
 
 ### getFromTo

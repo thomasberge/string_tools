@@ -812,7 +812,11 @@ test_selectFromTo() {
   StringTools cursor = new StringTools('thisis(not)awesome!');
   cursor.selectFromTo("s(", ")a");
   if (cursor.getSelection() == "not") {
-    bugs = false;
+    cursor.reset();
+    cursor.selectFromTo("(", ")", includeArguments: true);
+    if(cursor.getSelection() == "(not)") {
+      bugs = false;
+    }
   }
   return bugs;
 }
