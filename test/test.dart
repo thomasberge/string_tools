@@ -224,7 +224,7 @@ main() {
 
   if (test_selectFromToWithIgnoreES()) {
     failed++;
-    print("\tselectFromToWithIgnoreES()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("\tselectFromToWithIgnoreES()\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     cleared++;
   }
@@ -238,7 +238,7 @@ main() {
 
   if (test_getFromToWithIgnoreES()) {
     failed++;
-    print("\tgetFromToWithIgnoreES()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
+    print("\tgetFromToWithIgnoreES()\t\t\t[\u001b[31mFailed\u001b[0m]");
   } else {
     cleared++;
   }
@@ -836,7 +836,11 @@ test_getFromTo() {
   StringTools cursor = new StringTools('thisis(not)awesome!');
   String result = cursor.getFromTo("s(", ")a");
   if (result == "not") {
-    bugs = false;
+    cursor.reset();
+    result = cursor.getFromTo("s(", ")a", includeArguments: true);
+    if(result == "s(not)a") {
+      bugs = false;
+    }
   }
   return bugs;
 }

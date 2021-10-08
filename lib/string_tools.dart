@@ -469,7 +469,12 @@ class StringTools {
         if(getBeforePosition() == '\\' && ignoreEscape) {
           move();
         } else {
-          move(characters: from.length);
+          if(includeArguments == false) {
+            move(characters: from.length);
+          } else {
+            move();
+          }
+
           startSelection();
           run = false;
         }
@@ -503,40 +508,11 @@ class StringTools {
   }
 
   /// Extract the string between the two supplied string arguments
-  String getFromTo(String from, String to, {bool ignoreEscape = false}) {
+  String getFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
     bool run = true;
 
-    while(run) {
-      if(moveTo(from)) {
-        
-        if(getBeforePosition() == '\\' && ignoreEscape) {
-          move();
-        } else {
-          move(characters: from.length);
-          startSelection();
-          run = false;
-        }
-      } else {
-        print("StringTools error, getFromTo were unable to find 'from' value " + from + " in data.");
-        return("");
-      }
-    }
-
-    run = true;
-
-    while(run) {
-      if(moveTo(to)) {
-        if(getBeforePosition() == '\\' && ignoreEscape) {
-          move();
-        } else {
-          stopSelection();
-          return getSelection();
-        }
-      } else {
-        print("StringTools error, getFromTo were unable to find 'to' value " + to + " in data.");
-        return("");
-      }
-    }    
+    selectFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
+    return getSelection();
   }
 
   /// Delete the string between the two supplied string arguments
