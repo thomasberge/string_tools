@@ -863,7 +863,12 @@ test_deleteFromTo() {
     cursor.reset();
     cursor.deleteFromTo("isis", "wes", deleteArguments: true);
     if(cursor.data == "thome!") {
-      bugs = false;
+      cursor.data = "test('1234')test";
+      cursor.reset();
+      String test = cursor.deleteFromTo("('", "')", includeArguments: false, deleteArguments: true);
+      if(test == '1234') {
+        bugs = false;
+      }
     }
   }
   return bugs;

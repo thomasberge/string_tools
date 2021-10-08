@@ -509,11 +509,25 @@ class StringTools {
 
   /// Extract the string between the two supplied string arguments
   String getFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
-    bool run = true;
-
     selectFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
     return getSelection();
   }
+
+  String deleteFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false, bool deleteArguments = false}) {
+    String string = "";
+
+    if(includeArguments == false && deleteArguments) {
+      string = getFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: true);
+      string = string.substring(from.length, string.length - to.length);
+    } else {
+      string = getFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
+    }
+
+    deleteSelection();
+    return string;
+  }
+
+  /*
 
   /// Delete the string between the two supplied string arguments
   void deleteFromTo(String from, String to, { bool deleteArguments = false}) {
@@ -535,7 +549,7 @@ class StringTools {
       print("StringTools error, deleteFromTo were unable to find 'from' value " + from + " in data.");
     }
   }
-
+*/
   /// Deletes the first and last character of the current selection
   void deleteEdgesOfSelection() {
     deleteCharacters(1, fromPosition: start_selection);

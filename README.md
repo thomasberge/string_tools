@@ -424,10 +424,10 @@ String getFromTo(String from, String to, {bool ignoreEscape = false})
 ```
 
 ### deleteFromTo
-Delete the string between the two supplied string arguments. If the optional deleteArguments is set to ```True``` then the supplied arguments will also be deleted.
+Delete the string between the two supplied string arguments and returns the deleted value. If the optional deleteArguments is set to ```True``` then the supplied arguments will also be deleted, even if the function is not set to includeArguments. If includeArguments is set to ```True``` then it will both return and delete the arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
 
 ```dart
-void deleteFromTo(String from, String to, { bool deleteArguments = false })
+String deleteFromTo(String from, String to, { bool ignoreEscape = false, bool includeArguments = false, bool deleteArguments = false })
 ```
 
 ### reset
