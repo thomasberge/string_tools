@@ -815,7 +815,15 @@ test_selectFromTo() {
     cursor.reset();
     cursor.selectFromTo("(", ")", includeArguments: true);
     if(cursor.getSelection() == "(not)") {
-      bugs = false;
+      cursor.reset();
+      cursor.selectFromTo("n", "o");
+      if(cursor.getSelection() == "") {
+        cursor.reset();
+        cursor.selectFromTo("n", "o", includeArguments: true);
+        if(cursor.getSelection() == "no") {
+          bugs = false;
+        }
+      }
     }
   }
   return bugs;
@@ -866,8 +874,13 @@ test_deleteFromTo() {
       cursor.data = "test('1234')test";
       cursor.reset();
       String test = cursor.deleteFromTo("('", "')", includeArguments: false, deleteArguments: true);
+      cursor.data = '1234';
       if(test == '1234') {
-        bugs = false;
+        cursor.reset();
+        cursor.deleteFromTo('2', '3');
+        if(test == '1234') {
+          bugs = false;
+        }
       }
     }
   }

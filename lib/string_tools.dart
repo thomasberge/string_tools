@@ -375,8 +375,10 @@ class StringTools {
       data = first + last;
       position = start_selection;
       _checkEndOfLine();
+    } else if(stop_selection - start_selection == 0){
+      // nothing to delete, move along
     } else {
-      print("StringTools error, tried to delete marked length of 0 or less.");
+      print("StringTools error, tried to delete a negative selection.\nstart:" + start_selection.toString() + " stop:" + stop_selection.toString());
     }
   }
 
@@ -480,6 +482,7 @@ class StringTools {
         }
       } else {
         print("StringTools error, selectFromTo were unable to find 'from' value " + from + " in data.");
+        run = false;
         break;
       }
     }
@@ -502,6 +505,7 @@ class StringTools {
         }
       } else {
         print("StringTools error, selectFromTo were unable to find 'to' value " + to + " in data.");
+        run = false;
         break;
       }
     }    
@@ -512,6 +516,7 @@ class StringTools {
     selectFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
     return getSelection();
   }
+
 
   String deleteFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false, bool deleteArguments = false}) {
     String string = "";
@@ -527,29 +532,6 @@ class StringTools {
     return string;
   }
 
-  /*
-
-  /// Delete the string between the two supplied string arguments
-  void deleteFromTo(String from, String to, { bool deleteArguments = false}) {
-    if(moveTo(from)) {
-      if (deleteArguments == false) {
-        move(characters: from.length);
-      }
-      startSelection();
-      if(moveTo(to)) {
-        if (deleteArguments == true) {
-          move(characters: to.length);
-        }        
-        stopSelection();
-        deleteSelection();
-      } else {
-        print("StringTools error, deleteFromTo were unable to find 'to' value " + to + " in data.");
-      }
-    } else {
-      print("StringTools error, deleteFromTo were unable to find 'from' value " + from + " in data.");
-    }
-  }
-*/
   /// Deletes the first and last character of the current selection
   void deleteEdgesOfSelection() {
     deleteCharacters(1, fromPosition: start_selection);
