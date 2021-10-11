@@ -300,14 +300,6 @@ class StringTools {
         }
         move();
       }
-
-       /* String nextCharacter = getFromPosition(characters: );
-        if (values.contains(nextCharacter)) {
-          return nextCharacter;
-        } else {
-          move();
-        }
-      }*/
     }
   }
 

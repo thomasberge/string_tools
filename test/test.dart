@@ -642,14 +642,26 @@ test_getBeforePosition() {
 */
 test_moveToListElement() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("It is warm (inside).");
+  StringTools cursor = new StringTools("It is warm (inside).");
   List<String> list = ["(", ")"];
-  stringtools.moveToListElement(list);
-  if (stringtools.position == 11) {
-    stringtools.move();
-    stringtools.moveToListElement(list);
-    if (stringtools.position == 18) {
-      bugs = false;
+  cursor.moveToListElement(list);
+  if (cursor.position == 11) {
+    cursor.move();
+    cursor.moveToListElement(list);
+    if (cursor.position == 18) {
+      List<String> list2 = ["//", "%&"];
+      cursor.data = "Move to //this then %&!";
+      cursor.reset();
+      if(cursor.moveToListElement(list2) == "//") {
+        cursor.startSelection();
+        cursor.move();
+        if(cursor.moveToListElement(list2) == "%&") {
+          cursor.stopSelection();
+          if(cursor.getSelection() == "//this then ") {
+            bugs = false;
+          }
+        }
+      }
     }
   }
   return bugs;
