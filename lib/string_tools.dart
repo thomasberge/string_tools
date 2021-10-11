@@ -293,13 +293,21 @@ class StringTools {
       if (eol) {
         return "";
       } else {
-        String nextCharacter = getFromPosition();
+        for(String val in values){
+          if(val == getFromPosition(characters: val.length)) {
+            return val;
+          }
+        }
+        move();
+      }
+
+       /* String nextCharacter = getFromPosition(characters: );
         if (values.contains(nextCharacter)) {
           return nextCharacter;
         } else {
           move();
         }
-      }
+      }*/
     }
   }
 
