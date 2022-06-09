@@ -563,6 +563,15 @@ class StringTools {
   }
 
   /// Replaces the selected string with the supplied argument. Selects the new string.
+  void insertAtEdgesOfSelection(String first, String last) {
+    position = start_selection;
+    insertAtPosition(first);
+    position = stop_selection + first.length;
+    insertAtPosition(last);
+    stop_selection = stop_selection + first.length + last.length;
+  }
+
+  /// 
   void replaceSelection(String string) {
     deleteSelection();
     insertAtPosition(string);

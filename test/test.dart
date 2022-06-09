@@ -986,3 +986,23 @@ test_moveWhileRegex() {
   }
   return bugs;
 }
+
+/*  
+  insertAtEdgesOfSelection() appends the two arguments to the first and last parts of the selected string.
+  The selection is then resized.
+*/
+test_insertAtEdgesOfSelection() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("1346");
+  cursor.move();
+  cursor.startSelection();
+  cursor.move(characters: 2);
+  cursor.stopSelection();
+  cursor.insertAtEdgesOfSelection("2", "5");
+  if (cursor.data == "123456") {
+    if(cursor.getSelection() == "2345") {
+      bugs = false;
+    }
+  }
+  return bugs;
+}

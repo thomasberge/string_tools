@@ -96,6 +96,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [replaceCharacters](#replacecharacters)
 
 ##### Insert
+- [insertAtEdgesOfSelection](#insertatposition)
 - [insertAtPosition](#insertatposition)
 
 ##### Delete
@@ -168,6 +169,14 @@ then the data string will retain the same length, cutting characters that overfl
 
 ```dart
 void insertAtPosition(String value, {bool cutOverflow = false})
+```
+
+
+### insertAtEdgesOfSelection
+Inserts the two strings `first` and `last` at the first and last position of the selection. 
+
+```dart
+void insertAtEdgesOfSelection(String first, String last)
 ```
 
 
@@ -403,28 +412,28 @@ String getQuotedString()
 ```
 
 ### selectTo
-Selects the string from cursor ```position``` and to the supplied string argument. If ```ignoreEscape``` is set to ```True``` then the ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArgument``` is set to ```True``` then the function will also select the detected argument.
+Selects the string from cursor `position` and to the supplied string argument. If `ignoreEscape` is set to `True` then the `to` value will not be detected if it has a backslack \ as prefix. If `includeArgument` is set to `True` then the function will also select the detected argument.
 
 ```dart
 void selectTo(String from, String to, {bool ignoreEscape = false, bool includeArgument = false})
 ```
 
 ### selectFromTo
-Selects the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. If ```includeArguments``` are set to ```True``` then the function will also select the detected argument.
+Selects the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. If `includeArguments` are set to `True` then the function will also select the detected argument.
 
 ```dart
 void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false})
 ```
 
 ### getFromTo
-Extract the string between the two supplied string arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
+Extract the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. 
 
 ```dart
 String getFromTo(String from, String to, {bool ignoreEscape = false})
 ```
 
 ### deleteFromTo
-Delete the string between the two supplied string arguments and returns the deleted value. If the optional deleteArguments is set to ```True``` then the supplied arguments will also be deleted, even if the function is not set to includeArguments. If includeArguments is set to ```True``` then it will both return and delete the arguments. If ```ignoreEscape``` is set to ```True``` then the ```from``` and ```to``` value will not be detected if it has a backslack ```\``` as prefix. 
+Delete the string between the two supplied string arguments and returns the deleted value. If the optional deleteArguments is set to `True` then the supplied arguments will also be deleted, even if the function is not set to includeArguments. If includeArguments is set to `True` then it will both return and delete the arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. 
 
 ```dart
 String deleteFromTo(String from, String to, { bool ignoreEscape = false, bool includeArguments = false, bool deleteArguments = false })
