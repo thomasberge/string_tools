@@ -1,0 +1,2 @@
+#!/bin/bash
+docker build -t string_tools_test . && docker run -it string_tools_test

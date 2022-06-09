@@ -61,7 +61,7 @@ There are a number of other usefull functions that will allow you to edit the st
 
 ## Function index
 
-##### Move cursor
+##### Move Cursor
 - [move](#move)
 - [moveToEnd](#movetoend)
 - [moveTo](#moveto)
@@ -74,26 +74,24 @@ There are a number of other usefull functions that will allow you to edit the st
 ##### Selection
 - [startSelection](#startselection)
 - [stopSelection](#stopselection)
-- [getSelection](#getselection)
-- [deleteSelection](#deleteselection)
-- [deleteEdgesOfSelection](#deleteedgesofselection)
-- [replaceSelection](#replaceselection)
 - [selectFromTo](#selectfromto)
 - [selectTo](#selectto)
 
 ##### Get
-- [getAllBeforePosition](#getallbeforeposition)
 - [getAllAfterPosition](#getallafterposition)
+- [getAllBeforePosition](#getallbeforeposition)
 - [getAllFromPosition](#getallfromposition)
-- [getBeforePosition](#getbeforeposition)
 - [getAfterPosition](#getafterposition)
+- [getBeforePosition](#getbeforeposition)
 - [getFromPosition](#getfromposition)
-- [getQuotedString](#getquotedstring)
 - [getFromTo](#getfromto)
+- [getQuotedString](#getquotedstring)
+- [getSelection](#getselection)
 
 ##### Replace
 - [replaceAtPosition](#replaceatposition)
 - [replaceCharacters](#replacecharacters)
+- [replaceSelection](#replaceselection)
 
 ##### Insert
 - [insertAtEdgesOfSelection](#insertatposition)
@@ -105,7 +103,9 @@ There are a number of other usefull functions that will allow you to edit the st
 - [deleteAllFromPosition](#deleteallfromposition)
 - [deleteCharacters](#deletecharacters)
 - [deleteEdges](#deleteedges)
+- [deleteEdgesOfSelection](#deleteedgesofselection)
 - [deleteFromTo](#deletefromto)
+- [deleteSelection](#deleteselection)
 
 ##### General
 - [countUntil](#countuntil)

@@ -533,11 +533,11 @@ class StringTools {
   }
 
   /// Deletes the first and last character of the current selection
-  void deleteEdgesOfSelection() {
-    deleteCharacters(1, fromPosition: start_selection);
-    stop_selection = stop_selection -1;
-    deleteCharacters(1, fromPosition: stop_selection - 1);
-    stop_selection = stop_selection -1;
+  void deleteEdgesOfSelection({int characters: 1}) {
+    deleteCharacters(characters, fromPosition: start_selection);
+    stop_selection = stop_selection - characters;
+    deleteCharacters(characters, fromPosition: stop_selection - characters);
+    stop_selection = stop_selection - characters;
   }
 
   /// Counts the occurance of the given string
