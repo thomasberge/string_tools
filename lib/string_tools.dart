@@ -5,6 +5,14 @@
 library string_tools;
 import 'dart:convert';
 
+class CursorState {
+  int position;
+  int width;
+  int start_selection;
+  int stop_selection;
+  bool eol;
+}
+
 class StringTools {
   int position = 0;
   int width = 1;
@@ -12,6 +20,8 @@ class StringTools {
   int start_selection = 0;
   int stop_selection = 0;
   bool eol = false;
+
+  CursorState _state = CursorState();
 
   StringTools(this.data);
 
@@ -513,8 +523,10 @@ class StringTools {
 
   /// Extract the string between the two supplied string arguments
   String getFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
-    selectFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
-    return getSelection();
+    _saveState();
+    String temp = selectFromTo(from, to, ignoreEscape: ignoreEscape, includeArguments: includeArguments);
+    _loadState();
+    return temp;
   }
 
 
@@ -638,5 +650,23 @@ class StringTools {
     } else {
       return false;
     }
+  }
+
+  // Saves the current state of the cursor
+  void _saveState() {
+    _state.position = position;
+    _state.width = width;
+    _state.start_selection = start_selection;
+    _state.stop_selection = stop_selection;
+    _state.eol = eol;
+  }
+
+  // Saves the current state of the cursor
+  void _loadState() {
+    position = _state.position;
+    width = _state.width;
+    start_selection = _state.start_selection;
+    stop_selection = _state.stop_selection;
+    eol = _state.eol;
   }
 }

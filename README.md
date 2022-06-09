@@ -426,10 +426,10 @@ void selectFromTo(String from, String to, {bool ignoreEscape = false, bool inclu
 ```
 
 ### getFromTo
-Extract the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. 
+Extract the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. If `includeArguments` are set to `True` then the function will also select the detected argument.
 
 ```dart
-String getFromTo(String from, String to, {bool ignoreEscape = false})
+String getFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false})
 ```
 
 ### deleteFromTo
