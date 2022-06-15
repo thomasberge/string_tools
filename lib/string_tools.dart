@@ -423,13 +423,16 @@ class StringTools {
     }
   } 
 
-  /// Check first and last
-  void deleteEdges() {
-    data = data.substring(1);
-    data = data.substring(0, data.length-1);
-    if(position > 0) {
-      position--;
+  /// Deletes first and last characters. Character moves 
+  void deleteEdges({int characters: 1}) {
+    int tempPosition = position;
+    data = data.substring(characters);
+    data = data.substring(0, data.length-characters);
+    position = tempPosition - characters;
+    if(position < 0) {
+      position = 0;
     }
+    _checkEndOfLine();
   }
 
   /// Extract one args from quotes
