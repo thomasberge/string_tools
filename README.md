@@ -6,7 +6,7 @@ A dart class with a set of functions for handling string operations. Can it get 
 
 ## Versions
 
-This is the final version of the first main version. Any updates made here will only be bugfixes, not changes or enhancements.
+This is the final version of the first main version. Any updates made here will only be bugfixes, not changes or enhancements. The second version will be a major refactor and will therefor not be backwardscompatible.
 
 
 ## Installing
