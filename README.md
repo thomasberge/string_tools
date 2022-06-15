@@ -4,6 +4,11 @@ A dart class with a set of functions for handling string operations. Can it get 
 
 <a href="https://www.buymeacoffee.com/thomasberge" target="_blank"><img src="https://i.imgur.com/aV6DDA7.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" > </a>
 
+## Versions
+
+This is the final version of the first main version. Any updates made here will only be bugfixes, not changes or enhancements.
+
+
 ## Installing
 
 Add string_tools to your pubspec.yaml file:
@@ -13,6 +18,7 @@ dependencies:
   string_tools:
     git:
       url: https://github.com/thomasberge/string_tools.git
+      ref: v1-final
 ```
 
 Import in dart file:
