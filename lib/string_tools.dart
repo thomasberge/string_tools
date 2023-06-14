@@ -469,7 +469,7 @@ class StringTools {
 
   /// Check if last is the same as the supplied string
   bool lastIs(String string) {
-    if(data.length >= string.length) {
+    if((data.length-string.length) > -1) {
       if (data.substring(data.length-string.length) == string) {
         return true;
       } else {
