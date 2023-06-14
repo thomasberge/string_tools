@@ -1,29 +1,53 @@
 // StringTools
 // https://github.com/thomasberge/string_tools
-// © 2021 Thomas Sebastian Berge
+// © 2022 Thomas Sebastian Berge
 
 library string_tools;
 import 'dart:convert';
 
-class CursorState {
+class Document {
+  var data = r"" ;
+
+  Document(this.data);
+}
+
+class Cursor {
   int position = 0;
-  int width = 0;
   int start_selection = 0;
   int stop_selection = 0;
   bool eol = false;
 }
 
+class Selection {
+  int from = 0;
+  int to = 0;
+}
+
+class Search {
+  List<Selection> results = [];
+}
+
 class StringTools {
+  Document document = Document(r"");
+
   int position = 0;
-  int width = 1;
-  var data = r"";
   int start_selection = 0;
   int stop_selection = 0;
   bool eol = false;
 
-  CursorState _state = CursorState();
+  Cursor _state = Cursor();
 
-  StringTools(this.data);
+  StringTools(String data) {
+    document = Document(data);
+  }
+
+  String get data {
+    return document.data;
+  }
+
+  void set data(String data) {
+    document.data = data;
+  }
 
   /// Counts forward from current cursor [position] until it finds the given [value].
   ///
@@ -82,19 +106,56 @@ class StringTools {
     }
   }
 
-  /// Moves the cursor [position] a certain number of [characters].
+  /// Moves the cursor to the next character. Returns true if the operation succeeds and false
+  /// once you reach end of string. Allows for `while(cursor.next())` loops.
   ///
   /// If it overshoots then the cursor [position] will be moved to the end of the string.
-  void move({int characters = 1}) {
+  bool next({int characters = 1}) {
     position = position + characters;
     _checkEndOfLine();
-    if (eol) moveToEnd();
+    if (eol) {
+      end();
+      return false;
+    }  else {
+      return true;
+    }
+  }
+
+  /// Moves the cursor to the previous character. Returns true if the operation succeeds and
+  /// false once you reach the start of the string. Allows for `while(cursor.back())` loops.
+  bool back({int characters = 1}) {
+    position = position - characters;
+    if (position < 1) {
+      position = 0;
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /// Moves the cursor position past the last character of the string.
-  void moveToEnd() {
+  void home() {
+    position = 0;
+  }
+
+  /// Moves the cursor position past the last character of the string.
+  void end() {
     if (data.length != 0) {
       position = data.length;
+      eol = true;
+    }
+  }
+
+  /// Checks if the next characters are the same as the supplied string.
+  bool nextCharacters(String value) {
+    if((position + value.length) > data.length) {
+      return false;
+    } else {
+      if(data.substring(position, position + value.length) == value) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
@@ -145,18 +206,32 @@ class StringTools {
   ///  Moves the cursor [position] forward until either end of line or [value] is found.
   ///
   ///  Returns `true` if found and `false` if not.
-  bool moveTo(String value) {
+  bool find(String value, {bool reverse = false, bool ignoreInitial = false}) {
     bool not_found = true;
-    while (not_found) {
-      if ((position + value.length) > data.length) {
-        return false;
-      } else {
-        String temp = data.substring(position, (position + value.length));
-        if (temp == value) {
+
+    if(reverse == false) {
+      while (not_found) {
+        if (eol) {
+          return false;
+        } else {
+          String temp = data.substring(position, (position + value.length));
+          if (temp == value) {
+            return true;
+          } else {
+            next();
+          }
+        }
+      }
+    } else {
+      while (not_found) {
+        if (getFromPosition(characters: value.length) == value) {
           return true;
         } else {
-          position++;
-          _checkEndOfLine();
+          if (position > -1) {
+            position--;
+          } else {
+            return false;
+          }
         }
       }
     }
@@ -165,9 +240,9 @@ class StringTools {
   ///  Moves the cursor [position] forward until either end of line or [value] is found.
   ///
   ///  Returns `true` if found and `false` if not.
-  bool moveToNext(String value) {
-    move();
-    return moveTo(value);
+  bool nextToNext(String value) {
+    next();
+    return find(value);
   }
 
 
@@ -180,7 +255,6 @@ class StringTools {
 
     print("Data: >" + data + "<");
     print("Position: " + position.toString());
-    print("Width: " + width.toString());
 
     while (not_found) {
       position = data.length;
@@ -189,27 +263,6 @@ class StringTools {
         return false;
       }
       position--;
-    }
-  }
-
-  /// Moves the cursor [position] backwards until start of line or [value] is found.
-  ///
-  /// Returns `true` if found and `false` if not. The cursor [position] is set to the
-  /// start of the found [value].
-  bool moveBackwardsTo(String value) {
-    bool not_found = true;
-    while (not_found) {
-      if (position == 0) {
-        return false;
-      } else {
-        if (getFromPosition(characters: value.length) == value) {
-          return true;
-        } else {
-          if (position > -1) {
-            position--;
-          }
-        }
-      }
     }
   }
 
@@ -308,7 +361,7 @@ class StringTools {
             return val;
           }
         }
-        move();
+        next();
       }
     }
   }
@@ -416,8 +469,12 @@ class StringTools {
 
   /// Check if last is the same as the supplied string
   bool lastIs(String string) {
-    if (data.substring(data.length-string.length) == string) {
-      return true;
+    if(data.length >= string.length) {
+      if (data.substring(data.length-string.length) == string) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
@@ -439,10 +496,10 @@ class StringTools {
   String getQuotedString() {
     if(count('"') == 2) {
       position = 0;
-      moveTo('"');
-      move();
+      find('"');
+      next();
       startSelection();
-      moveTo('"');
+      find('"');
       stopSelection();
       return(getSelection());
     } else {
@@ -457,12 +514,12 @@ class StringTools {
     bool run = true;
 
     while(run) {
-      if(moveTo(to)) {
+      if(find(to)) {
         if(getBeforePosition() == '\\' && ignoreEscape) {
-          move();
+          next();
         } else {
           if(includeArgument) {
-            move(characters: to.length);
+            next(characters: to.length);
           }
           stopSelection();
           run = false;
@@ -479,15 +536,15 @@ class StringTools {
     bool run = true;
 
     while(run) {
-      if(moveTo(from)) {
+      if(find(from)) {
         
         if(getBeforePosition() == '\\' && ignoreEscape) {
-          move();
+          next();
         } else {
           if(includeArguments == false) {
-            move(characters: from.length);
+            next(characters: from.length);
           } else {
-            move();
+            next();
           }
 
           startSelection();
@@ -503,9 +560,9 @@ class StringTools {
     run = true;
 
     while(run) {
-      if(moveTo(to)) {
+      if(find(to)) {
         if(getBeforePosition() == '\\' && ignoreEscape) {
-          move();
+          next();
         } else {
           stopSelection();
 
@@ -661,7 +718,6 @@ class StringTools {
   // Saves the current state of the cursor
   void _saveState() {
     _state.position = position;
-    _state.width = width;
     _state.start_selection = start_selection;
     _state.stop_selection = stop_selection;
     _state.eol = eol;
@@ -670,7 +726,6 @@ class StringTools {
   // Saves the current state of the cursor
   void _loadState() {
     position = _state.position;
-    width = _state.width;
     start_selection = _state.start_selection;
     stop_selection = _state.stop_selection;
     eol = _state.eol;

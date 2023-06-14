@@ -46,7 +46,7 @@ StringTools cursor = new StringTools("StringTools is quite useful(not really)!")
 List<String> elems = [")", "("];
 cursor.moveToListElement(elems);
 cursor.startSelection();
-cursor.move();
+cursor.next();
 cursor.moveToListElement(elems);
 cursor.stopSelection();
 cursor.deleteSelection();
@@ -62,11 +62,14 @@ There are a number of other usefull functions that will allow you to edit the st
 ## Function index
 
 ##### Move Cursor
-- [move](#move)
-- [moveToEnd](#movetoend)
-- [moveTo](#moveto)
+- [next](#next)
+- [back](#next)
+- [home](#home)
+- [end](#end)
+
+##### Search
+- [find](#find)
 - [moveToNext](#movetonext)
-- [moveBackwardsTo](#movebackwardsto)
 - [moveToListElement](#movetolistelement)
 - [moveToRegex](#movetoregex)
 - [moveWhileRegex](#movewhileregex)
@@ -143,21 +146,21 @@ int countCharacterSequenze(String character)
 ```
 
 
-### move
-Moves the cursor `position` a certain number of `characters`. 
+### next
+Advances the cursor `position` a certain number of `characters`. 
 
-If it overshoots then the cursor `position` will be moved past the last character of the string.
+If it overshoots then the cursor `position` will be moved just past the last character of the string and the eol flag will be set.
 
 ```dart
-void move({int characters = 1})
+void next({int characters = 1})
 ```
 
 
-### moveToEnd
-Moves the cursor position past the last character of the string.
+### end
+Moves the cursor position just past the last character of the string and sets the eol flag.
 
 ```dart
-void moveToEnd()
+void end()
 ``` 
 
 
@@ -200,13 +203,13 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 ```
 
 
-### moveTo
-Moves the cursor `position` forward until either end of line or `value` is found. It cursor `position` contains `value` then the `position` will not change. Use moveToNext instead. 
+### find
+Advances the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
 
 ```dart
-bool moveToNext(String value)
+bool find(String value {bool reverse = false})
 ```
 
 ### moveToNext
@@ -216,17 +219,6 @@ Returns `true` if found and `false` if not.
 
 ```dart
 bool moveTo(String value)
-```
-
-
-### moveBackwardsTo
-Moves the cursor `position` backwards until start of line or `value` is found.
-
-Returns `true` if found and `false` if not. The cursor `position` is set to the 
-start of the found `value`.
-
-```dart
-bool moveBackwardsTo(String value) 
 ```
 
 

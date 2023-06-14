@@ -1,307 +1,109 @@
 import 'string_tools.dart';
 
+Map<String, String> errors = {};
+List<Function> functions = [
+  test_next,
+  test_back,
+  test_find,
+  test_nextCharacters,
+  test_home,
+  test_end,
+  test_countUntil,
+  test_countCharacterSequenze,
+  test_insertAtPosition,
+  test_replaceAtPosition,
+  test_replaceCharacters,
+  test_getAllFromPosition,
+  test_getAllAfterPosition,
+  test_getAllBeforePosition,
+  test_getFromPosition,
+  test_getAfterPosition,
+  test_getBeforePosition,
+  test_deleteAllFromPosition,
+  test_deleteAllAfterPosition,
+  test_deleteAllBeforePosition,
+  test_moveToListElement,
+  test_deleteCharacters,
+  test_findPosition,
+  test_getSelection,
+  test_deleteSelection,
+  test_edgesIs,
+  test_firstIs,
+  test_lastIs,
+  test_deleteEdges,
+  test_count,
+  test_getQuotedString,
+  test_selectTo,
+  test_selectFromTo,
+  test_selectFromToWithIgnoreES,
+  test_getFromTo,
+  test_getFromToWithIgnoreES,
+  test_deleteFromTo,
+  test_replaceSelection,
+  test_deleteEdgesOfSelection,
+  test_moveToRegex,
+  test_moveWhileRegex
+];
+
 main() {
-  print("\r\n\r\n                   :: Running Test Script ::\r\n");
+  print("\r\n  ------------------------------------------------------------------");
+  print("  :: Running Test Script                                          ::");
+  print("  ------------------------------------------------------------------");  
   int cleared = 0;
   int failed = 0;
 
-  if (test_move()) {
-    failed++;
-    print("\tmove()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
+  for(Function f in functions) {
+    if(f()) {
+      failed++;
+      String error_message = "Unknown error";
+      if(errors.containsKey(getFunctionName(f))) {
+        error_message = errors[getFunctionName(f)].toString();
+      }
+      print("  \u001b[31m" + getFunctionName(f) + " failed. Reason: " + error_message + "\u001b[0m");
+    } else {
+      cleared++;
+    }
   }
-
-  if (test_moveTo()) {
-    failed++;
-    print("\tmoveTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_moveBackwardsTo()) {
-    failed++;
-    print("\tmoveBackwardsTo()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_moveToEnd()) {
-    failed++;
-    print("\tmoveToEnd()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_countUntil()) {
-    failed++;
-    print("\tcountUntil()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_countCharacterSequenze()) {
-    failed++;
-    print("\tcountCharacterSequenze()\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_insertAtPosition()) {
-    failed++;
-    print("\tinsertAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_replaceAtPosition()) {
-    failed++;
-    print("\treplaceAtPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_replaceCharacters()) {
-    failed++;
-    print("\treplaceCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getAllFromPosition()) {
-    failed++;
-    print("\tgetAllFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getAllAfterPosition()) {
-    failed++;
-    print("\tgetAllAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getAllBeforePosition()) {
-    failed++;
-    print("\tgetAllBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getFromPosition()) {
-    failed++;
-    print("\tgetFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getAfterPosition()) {
-    failed++;
-    print("\tgetAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getBeforePosition()) {
-    failed++;
-    print("\tgetBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteAllFromPosition()) {
-    failed++;
-    print("\tdeleteFromPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteAllAfterPosition()) {
-    failed++;
-    print("\tdeleteAfterPosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteAllBeforePosition()) {
-    failed++;
-    print("\tdeleteBeforePosition()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_moveToListElement()) {
-    failed++;
-    print("\tmoveToListElement()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteCharacters()) {
-    failed++;
-    print("\tdeleteCharacters()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_findPosition()) {
-    failed++;
-    print("\tfindPosition()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getSelection()) {
-    failed++;
-    print("\tgetSelection()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteSelection()) {
-    failed++;
-    print("\tdeleteSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_edgesIs()) {
-    failed++;
-    print("\tedgesIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_firstIs()) {
-    failed++;
-    print("\tfirstIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_lastIs()) {
-    failed++;
-    print("\tlastIs()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }  
-
-  if (test_deleteEdges()) {
-    failed++;
-    print("\tdeleteEdges()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_count()) {
-    failed++;
-    print("\tcount()\t\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getQuotedString()) {
-    failed++;
-    print("\tgetQuotedString()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_selectTo()) {
-    failed++;
-    print("\tselectTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_selectFromTo()) {
-    failed++;
-    print("\tselectFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_selectFromToWithIgnoreES()) {
-    failed++;
-    print("\tselectFromToWithIgnoreES()\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getFromTo()) {
-    failed++;
-    print("\tgetFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_getFromToWithIgnoreES()) {
-    failed++;
-    print("\tgetFromToWithIgnoreES()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_deleteFromTo()) {
-    failed++;
-    print("\tdeleteFromTo()\t\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-  
-  if (test_replaceSelection()) {
-    failed++;
-    print("\treplaceSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
- 
-  }
-
-  if (test_deleteEdgesOfSelection()) {
-    failed++;
-    print("\tdeleteEdgesOfSelection()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_moveToRegex()) {
-    failed++;
-    print("\tmoveToRegex()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }
-
-  if (test_moveWhileRegex()) {
-    failed++;
-    print("\tmoveWhileRegex()\t\t\t[\u001b[31mFailed\u001b[0m]");
-  } else {
-    cleared++;
-  }  
-
-  print("\r\n---------------------------------------------------------------");
 
   if(failed == 0) {
-    print("\r\n             [" + cleared.toString() + "/" + cleared.toString() + "] tests completed without fail.\r\n");
+    print("  :: [" + cleared.toString() + "/" + cleared.toString() + "] tests completed without fail.                        ::");
   } else {
-    print("\r\n  [\u001b[31m" + cleared.toString() + "\u001b[0m/" + (cleared + failed).toString() + "] tests completed without fail. Review errors above.\r\n");
+  print("\r\n  ------------------------------------------------------------------");  
+    print("  ::  [\u001b[31m" + cleared.toString() + "\u001b[0m/" + (cleared + failed).toString() + "] tests completed without fail. Review errors above.  ::");
   }
-
-  print("---------------------------------------------------------------\r\n");
+  print("  ------------------------------------------------------------------\r\n");
 
 }
 
-bool test_move() {
+/*  UTILITY FUNCTIONS   
+*/
+
+void printErrorMessages(String key) {
+  for(MapEntry e in errors.entries) {
+    if(e.key == key) {
+      print(errors[key]);
+    }
+  }
+}
+
+String getFunctionName(Function f) {
+  return ""+f.toString().split("from Function 'test_", )[1].split("': ")[0] + "()".toString();  // yes this is bad
+}
+
+/*  TEST FUNCTIONS
+*/
+
+bool test_next() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("Woof");
-  stringtools.move();
-  if (stringtools.position == 1) {
-    stringtools.move();
-    if (stringtools.position == 2) {
-      stringtools.move(characters: 1);
-      if (stringtools.position == 3) {
-        stringtools.move(characters: 100);
-        if (stringtools.position == 4) {
+  StringTools cursor = new StringTools("Woof");
+  cursor.next();
+  if (cursor.position == 1) {
+    cursor.next();
+    if (cursor.position == 2) {
+      cursor.next(characters: 1);
+      if (cursor.position == 3) {
+        cursor.next(characters: 100);
+        if (cursor.position == 4) {
           bugs = false;
         }
       }
@@ -310,36 +112,68 @@ bool test_move() {
   return bugs;
 }
 
-bool test_moveTo() {
+bool test_back() {
   bool bugs = true;
-  StringTools cursor = new StringTools("High as a kite!");
-  cursor.moveTo("as");
-  if (cursor.position == 5) {
-    if(cursor.moveTo('!')) {
+  StringTools cursor = new StringTools("01234567890");
+  cursor.end();
+  cursor.back();
+  if (cursor.position == 10) {
+    while(cursor.back(characters: 2)) {
+      
+    }
+    if(cursor.position == 0) {
       bugs = false;
     }
   }
   return bugs;
 }
 
-bool test_moveBackwardsTo() {
+bool test_nextCharacters() {
   bool bugs = true;
-  StringTools stringtools = new StringTools("High as a kite!");
-  stringtools.moveToEnd();
-  stringtools.moveBackwardsTo("as");
-  if (stringtools.position == 5) {
-    bugs = false;
+  StringTools cursor = new StringTools("This is a super duper test!");
+  cursor.find("super");
+  if (cursor.nextCharacters("super")) {
+    if(cursor.nextCharacters("aaaaarg") == false) {
+      cursor.find("!");
+      if(cursor.nextCharacters("!!") == false) {
+        bugs = false;
+      }
+    }
   }
   return bugs;
 }
 
-bool test_moveToEnd() {
+bool test_find() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("High as a kite!");
+  cursor.find("as");
+  if (cursor.position == 5) {
+    if(cursor.find('!')) {
+      if(cursor.find("High", reverse: true)) {
+        if(cursor.position == 0) {
+          bugs = false;
+        } else {
+          errors["find()"] = "Position after reverse find is not correct.";
+        }
+      } else {
+        errors["find()"] = "Failed reverse find.";
+      }
+    } else {
+      errors["find()"] = "Failed to find last character.";
+    }
+  } else {
+    errors["find()"] = "Failed to find the supplied argument.";
+  }
+  return bugs;
+}
+
+bool test_end() {
   bool bugs = true;
   StringTools stringtools = new StringTools("");
-  stringtools.moveToEnd();
+  stringtools.end();
   if (stringtools.position == 0) {
     stringtools.data = "123";
-    stringtools.moveToEnd();
+    stringtools.end();
     if (stringtools.position == 3) {
       bugs = false;
     }
@@ -646,7 +480,7 @@ test_moveToListElement() {
   List<String> list = ["(", ")"];
   cursor.moveToListElement(list);
   if (cursor.position == 11) {
-    cursor.move();
+    cursor.next();
     cursor.moveToListElement(list);
     if (cursor.position == 18) {
       List<String> list2 = ["//", "%&"];
@@ -654,7 +488,7 @@ test_moveToListElement() {
       cursor.reset();
       if(cursor.moveToListElement(list2) == "//") {
         cursor.startSelection();
-        cursor.move();
+        cursor.next();
         if(cursor.moveToListElement(list2) == "%&") {
           cursor.stopSelection();
           if(cursor.getSelection() == "//this then ") {
@@ -709,9 +543,9 @@ test_findPosition() {
 test_getSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");
-  stringtools.moveTo("not");
+  stringtools.find("not");
   stringtools.startSelection();
-  stringtools.move(characters: 3);
+  stringtools.next(characters: 3);
   stringtools.stopSelection();
   if (stringtools.getSelection() == "not") {
     bugs = false;
@@ -727,9 +561,9 @@ test_getSelection() {
 test_deleteSelection() {
   bool bugs = true;
   StringTools stringtools = new StringTools("I am not the best!");
-  stringtools.moveTo("not");
+  stringtools.find("not");
   stringtools.startSelection();
-  stringtools.move(characters: 4);
+  stringtools.next(characters: 4);
   stringtools.stopSelection();
   stringtools.deleteSelection();
   if (stringtools.data == "I am the best!") {
@@ -806,11 +640,11 @@ test_getQuotedString() {
 test_selectTo() {
   bool bugs = true;
   StringTools cursor = new StringTools('1234586789');
-  cursor.move();
+  cursor.next();
   cursor.selectTo("8");
   if (cursor.getSelection() == "2345") {
     cursor.reset();
-    cursor.move();
+    cursor.next();
     cursor.selectTo("8", includeArgument: true);
     if(cursor.getSelection() == "23458") {
       bugs = false;
@@ -920,9 +754,9 @@ test_lastIs() {
 test_replaceSelection() {
   bool bugs = true;
   StringTools cursor = new StringTools("Get off my lawn!");
-  cursor.moveTo("my");
+  cursor.find("my");
   cursor.startSelection();
-  cursor.moveTo("!");
+  cursor.find("!");
   cursor.stopSelection();
   if (cursor.getSelection() == "my lawn") {
     cursor.replaceSelection("the carpet");
@@ -938,9 +772,9 @@ test_replaceSelection() {
 test_deleteEdgesOfSelection() {
   bool bugs = true;
   StringTools cursor = new StringTools("123321");
-  cursor.move();
+  cursor.next();
   cursor.startSelection();
-  cursor.move(characters: 4);
+  cursor.next(characters: 4);
   cursor.stopSelection();
   //print(cursor.getSelection());
   cursor.deleteEdgesOfSelection();
@@ -994,15 +828,30 @@ test_moveWhileRegex() {
 test_insertAtEdgesOfSelection() {
   bool bugs = true;
   StringTools cursor = new StringTools("1346");
-  cursor.move();
+  cursor.next();
   cursor.startSelection();
-  cursor.move(characters: 2);
+  cursor.next(characters: 2);
   cursor.stopSelection();
   cursor.insertAtEdgesOfSelection("2", "5");
   if (cursor.data == "123456") {
     if(cursor.getSelection() == "2345") {
       bugs = false;
     }
+  }
+  return bugs;
+}
+
+/*  
+  insertAtEdgesOfSelection() appends the two arguments to the first and last parts of the selected string.
+  The selection is then resized.
+*/
+test_home() {
+  bool bugs = true;
+  StringTools cursor = new StringTools("abcdef");
+  cursor.position = 3;
+  cursor.home();
+  if (cursor.position == 0) {
+    bugs = false;
   }
   return bugs;
 }
