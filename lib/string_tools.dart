@@ -488,9 +488,13 @@ class StringTools {
   }
 
   /// Check if first is the same as the supplied string
-  bool firstIs(String string) {
-    if (data.substring(0,string.length) == string) {
-      return true;
+  bool firstIs(String value) {
+    if(value.length <= data.length) {
+      if (data.substring(0,value.length) == value) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
