@@ -131,7 +131,7 @@ If it overshoots then the cursor `position` will be moved just past the last cha
 ```dart
 void next({int characters = 1})
 ```
-[top](#movecursor)
+[top](#move cursor)
 
 ### back
 Moves the cursor `position` back a certain number of `characters`. 
@@ -141,7 +141,7 @@ If it overshoots then the cursor `position` will be moved to the first character
 ```dart
 void back({int characters = 1})
 ```
-[top](#movecursor)
+[top](#move cursor)
 
 ### home
 Moves the cursor position to the start of the string.
@@ -149,7 +149,7 @@ Moves the cursor position to the start of the string.
 ```dart
 void home()
 ``` 
-[top](#movecursor)
+[top](#move cursor)
 
 ### end
 Moves the cursor position just past the last character of the string and sets the eol flag.
@@ -157,7 +157,7 @@ Moves the cursor position just past the last character of the string and sets th
 ```dart
 void end()
 ``` 
-[top](#movecursor)
+[top](#move cursor)
 
 ### countUntil
 Counts forward from current cursor `position` until it finds the given `value`. 
