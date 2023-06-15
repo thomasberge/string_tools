@@ -63,7 +63,7 @@ There are a number of other usefull functions that will allow you to edit the st
 
 ##### Move Cursor
 - [next](#next)
-- [back](#next)
+- [back](#back)
 - [home](#home)
 - [end](#end)
 
@@ -123,6 +123,42 @@ There are a number of other usefull functions that will allow you to edit the st
 
 ## Functions descriptions
 
+### next
+Advances the cursor `position` a certain number of `characters`. 
+
+If it overshoots then the cursor `position` will be moved just past the last character of the string and the eol flag will be set.
+
+```dart
+void next({int characters = 1})
+```
+[top](#movecursor)
+
+### back
+Moves the cursor `position` back a certain number of `characters`. 
+
+If it overshoots then the cursor `position` will be moved to the first character of the string.
+
+```dart
+void back({int characters = 1})
+```
+[top](#movecursor)
+
+### home
+Moves the cursor position to the start of the string.
+
+```dart
+void home()
+``` 
+[top](#movecursor)
+
+### end
+Moves the cursor position just past the last character of the string and sets the eol flag.
+
+```dart
+void end()
+``` 
+[top](#movecursor)
+
 ### countUntil
 Counts forward from current cursor `position` until it finds the given `value`. 
 
@@ -144,24 +180,6 @@ character will be used.
 ```dart
 int countCharacterSequenze(String character)
 ```
-
-
-### next
-Advances the cursor `position` a certain number of `characters`. 
-
-If it overshoots then the cursor `position` will be moved just past the last character of the string and the eol flag will be set.
-
-```dart
-void next({int characters = 1})
-```
-
-
-### end
-Moves the cursor position just past the last character of the string and sets the eol flag.
-
-```dart
-void end()
-``` 
 
 
 ### insertAtPosition
@@ -204,7 +222,6 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 
 
 ### find
-[top](#search)
 Advances the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
@@ -212,8 +229,9 @@ Returns `true` if found and `false` if not.
 ```dart
 bool find(String value {bool reverse = false})
 ```
+[top](#search)
 
-### moveToNext
+### findNext
 Moves the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
@@ -221,7 +239,7 @@ Returns `true` if found and `false` if not.
 ```dart
 bool moveTo(String value)
 ```
-
+[top](#search)
 
 ### getAllBeforePosition
 Returns all the characters left of cursor `position`.
