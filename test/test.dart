@@ -22,7 +22,7 @@ List<Function> functions = [
   test_deleteAllFromPosition,
   test_deleteAllAfterPosition,
   test_deleteAllBeforePosition,
-  test_moveToListElement,
+  test_findOneOf,
   test_deleteCharacters,
   test_findPosition,
   test_getSelection,
@@ -145,12 +145,18 @@ bool test_nextCharacters() {
 
 bool test_find() {
   bool bugs = true;
-  StringTools cursor = new StringTools("High as a kite!");
+
+  StringTools cursor = new StringTools('High as a kite!');
   cursor.find("as");
   if (cursor.position == 5) {
     if(cursor.find('!')) {
       if(cursor.find("High", reverse: true)) {
         if(cursor.position == 0) {
+          if(cursor.find("Im not even there!", reverse: true) == false) {
+            bugs = false;
+          } else {
+            errors["find()"] = "Failed reverse find #2.";
+          }
           bugs = false;
         } else {
           errors["find()"] = "Position after reverse find is not correct.";
@@ -474,22 +480,22 @@ test_getBeforePosition() {
   With a position of 0, moveToFirstInList([")", "("]) returns "(". The position is then 11.
   With a position of 11, moveToFirstInList(["(", ")"]) returns ")". The position is then 18.
 */
-test_moveToListElement() {
+test_findOneOf() {
   bool bugs = true;
   StringTools cursor = new StringTools("It is warm (inside).");
   List<String> list = ["(", ")"];
-  cursor.moveToListElement(list);
+  cursor.findOneOf(list);
   if (cursor.position == 11) {
     cursor.next();
-    cursor.moveToListElement(list);
+    cursor.findOneOf(list);
     if (cursor.position == 18) {
       List<String> list2 = ["//", "%&"];
       cursor.data = "Move to //this then %&!";
       cursor.reset();
-      if(cursor.moveToListElement(list2) == "//") {
+      if(cursor.findOneOf(list2) == "//") {
         cursor.startSelection();
         cursor.next();
-        if(cursor.moveToListElement(list2) == "%&") {
+        if(cursor.findOneOf(list2) == "%&") {
           cursor.stopSelection();
           if(cursor.getSelection() == "//this then ") {
             bugs = false;

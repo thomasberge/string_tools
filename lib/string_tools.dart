@@ -49,6 +49,68 @@ class StringTools {
     document.data = data;
   }
 
+
+  ///  Moves the cursor [position] forward until either end of line or [value] is found.
+  ///
+  ///  Returns `true` if found and `false` if not.
+  bool find(String value, {bool reverse = false, bool ignoreInitial = false}) {
+    bool not_found = true;
+
+    if(reverse == false) {
+      while (not_found) {
+        if (position + value.length > data.length) {
+          eol = true;
+        }
+        if (eol) {
+          return false;
+        } else {
+          String temp = data.substring(position, (position + value.length));
+          if (temp == value) {
+            return true;
+          } else {
+            next();
+          }
+        }
+      }
+    } else {
+      while (not_found) {
+
+        /*
+        String state = '';
+        int i = 0;
+        data.runes.forEach((int rune) {
+          var character=new String.fromCharCode(rune);
+          if(i == position) {
+            state = state + '\x1B[31m|\x1B[0m';
+          }
+          state = state + character;
+          i++;
+        });
+        print('"' + state + '" pos:$position');
+        */
+
+        if (position + value.length > data.length) {
+          position--;
+          continue;
+        }
+        if(position < 0) {
+          return false;
+        }
+
+        if (getFromPosition(characters: value.length) == value) {
+          return true;
+        } else {
+          if (position > -1) {
+            position--;
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+  }
+
+
   /// Counts forward from current cursor [position] until it finds the given [value].
   ///
   /// Returns the absolute [position] of the first character of the [value]. If [relativePosition]
@@ -203,39 +265,6 @@ class StringTools {
     if (cutOverflow == true) data = data.substring(0, original_length);
   }
 
-  ///  Moves the cursor [position] forward until either end of line or [value] is found.
-  ///
-  ///  Returns `true` if found and `false` if not.
-  bool find(String value, {bool reverse = false, bool ignoreInitial = false}) {
-    bool not_found = true;
-
-    if(reverse == false) {
-      while (not_found) {
-        if (eol) {
-          return false;
-        } else {
-          String temp = data.substring(position, (position + value.length));
-          if (temp == value) {
-            return true;
-          } else {
-            next();
-          }
-        }
-      }
-    } else {
-      while (not_found) {
-        if (getFromPosition(characters: value.length) == value) {
-          return true;
-        } else {
-          if (position > -1) {
-            position--;
-          } else {
-            return false;
-          }
-        }
-      }
-    }
-  }
 
   ///  Moves the cursor [position] forward until either end of line or [value] is found.
   ///
