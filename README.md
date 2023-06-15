@@ -68,7 +68,7 @@ There are a number of other usefull functions that will allow you to edit the st
 - [end](#end)
 
 ##### Search
-- bool [find](#find)(String value, {bool reverse = false, bool ignoreInitial = false})
+- [find](#find)
 - [findNext](#movetonext)
 - [findOneOf](#movetolistelement)
 - [moveToRegex](#movetoregex)
@@ -204,6 +204,7 @@ void replaceCharacters(int characters, String value, {bool cutOverflow = false})
 
 
 ### find
+[top](#search)
 Advances the cursor `position` forward until either end of line or `value` is found.
 
 Returns `true` if found and `false` if not.
