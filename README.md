@@ -68,9 +68,9 @@ There are a number of other usefull functions that will allow you to edit the st
 - [end](#end)
 
 ##### Search
-- [find](#find)
-- [moveToNext](#movetonext)
-- [moveToListElement](#movetolistelement)
+- bool [find](#find)(String value, {bool reverse = false, bool ignoreInitial = false})
+- [findNext](#movetonext)
+- [findOneOf](#movetolistelement)
 - [moveToRegex](#movetoregex)
 - [moveWhileRegex](#movewhileregex)
 

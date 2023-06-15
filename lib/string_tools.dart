@@ -240,7 +240,7 @@ class StringTools {
   ///  Moves the cursor [position] forward until either end of line or [value] is found.
   ///
   ///  Returns `true` if found and `false` if not.
-  bool nextToNext(String value) {
+  bool findNext(String value) {
     next();
     return find(value);
   }
@@ -350,7 +350,7 @@ class StringTools {
   /// Moves cursor [position] until it finds any element in [values] and returns that element.
   ///
   /// Reaching end of line returns a blank character.
-  String moveToListElement(List<String> values) {
+  String findOneOf(List<String> values) {
     while (true) {
       _checkEndOfLine();
       if (eol) {
