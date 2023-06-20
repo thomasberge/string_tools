@@ -564,8 +564,9 @@ class StringTools {
     }    
   }
 
-  /// Selects the string between the two supplied string arguments
-  void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
+  /// Selects the string between the two supplied string arguments. Returns false if the conditions are not part
+  /// of the data.
+  bool selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false}) {
     bool run = true;
 
     while(run) {
@@ -584,8 +585,7 @@ class StringTools {
           run = false;
         }
       } else {
-        print("StringTools error, selectFromTo were unable to find 'from' value " + from + " in data.");
-        run = false;
+        return false;
         break;
       }
     }
@@ -607,11 +607,12 @@ class StringTools {
           run = false;
         }
       } else {
-        print("StringTools error, selectFromTo were unable to find 'to' value " + to + " in data.");
-        run = false;
+        return false;
         break;
       }
-    }    
+    }
+
+    return true;    
   }
 
   /// Extract the string between the two supplied string arguments

@@ -430,10 +430,10 @@ void selectTo(String from, String to, {bool ignoreEscape = false, bool includeAr
 ```
 
 ### selectFromTo
-Selects the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. If `includeArguments` are set to `True` then the function will also select the detected argument.
+Selects the string between the two supplied string arguments. If `ignoreEscape` is set to `True` then the `from` and `to` value will not be detected if it has a backslack \ as prefix. If `includeArguments` are set to `True` then the function will also select the detected argument. Returns `true` if a selection with the supplied arguments were successful and `false` if not.
 
 ```dart
-void selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false})
+bool selectFromTo(String from, String to, {bool ignoreEscape = false, bool includeArguments = false})
 ```
 
 ### getFromTo
