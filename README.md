@@ -366,7 +366,7 @@ void stopSelection({int? value = null, bool end_of_string = false})
 
 
 ### getSelection
-Returns the selected `string`. 
+Returns the selected text. 
 
 ```dart
 String getSelection()
@@ -374,10 +374,10 @@ String getSelection()
 
 
 ### deleteSelection
-Deletes the selected `string`. The cursor `position` is set to the start location of the selection after it has been deleted.
+Deletes the selected text. The cursor `position` is set to the start location of the selection after it has been deleted. Returns the deleted string.
 
 ```dart
-void deleteSelection()
+String deleteSelection()
 ```
 
 ### edgesIs
@@ -458,17 +458,17 @@ void reset()
 ```
 
 ### replaceSelection
-Replaces the selected text with the supplied argument. The new text will be selected.
+Replaces the selected text with the supplied argument. The new text will be selected. Returns the replaced text.
 
 ```dart
-void replaceSelection(String argument)
+String replaceSelection(String argument)
 ```
 
 ### deleteEdgesOfSelection
-Deletes the first and last character of the selected text. Adjusts the selection.
+Deletes the first and last character of the selected text. Adjusts the selection. Defaults to 1 character but can be overridden.
 
 ```dart
-void replaceSelection(String argument)
+void deleteEdgesOfSelection({int characters: 1})
 ```
 
 ### moveToRegex

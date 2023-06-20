@@ -460,7 +460,8 @@ class StringTools {
   }
 
   /// Deletes the selected `string`.
-  void deleteSelection() {
+  String deleteSelection() {
+    String selection = getSelection();
     if (stop_selection - start_selection > 0) {
       String first = data.substring(0, start_selection);
       String last = data.substring(stop_selection);
@@ -472,6 +473,7 @@ class StringTools {
     } else {
       print("StringTools error, tried to delete a negative selection.\nstart:" + start_selection.toString() + " stop:" + stop_selection.toString());
     }
+    return selection;
   }
 
   /// Check if first and last are the same as the supplied string
@@ -680,11 +682,12 @@ class StringTools {
     stop_selection = stop_selection + first.length + last.length;
   }
 
-  /// 
-  void replaceSelection(String string) {
-    deleteSelection();
+  /// Replaces the selected string with the supplied argument. Returns the string that was replaced.
+  String replaceSelection(String string) {
+    String selected = deleteSelection();
     insertAtPosition(string);
     stop_selection = start_selection + string.length;
+    return selected;
   }
 
   ///  Moves the cursor [position] forward until either end of line or the selected string
